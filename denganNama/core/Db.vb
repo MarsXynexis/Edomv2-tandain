@@ -1,5 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
+Imports System.Windows.Forms
+
 Module db
     Private ReadOnly ConnectionString As String = "Server=localhost;Database=dengannama;Uid=root;Pwd=;"
 

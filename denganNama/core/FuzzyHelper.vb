@@ -61,7 +61,7 @@ End Class
 Public Module FuzzyHelper
 
     Public Function CariPathScript() As String
-        Dim direktoriSaatIni As New DirectoryInfo(Application.StartupPath)
+        Dim direktoriSaatIni As New DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory)
 
         For langkah As Integer = 0 To 5
             If direktoriSaatIni Is Nothing Then Exit For
@@ -75,7 +75,7 @@ Public Module FuzzyHelper
             direktoriSaatIni = direktoriSaatIni.Parent
         Next
 
-        Dim lokal As String = Path.Combine(Application.StartupPath, "fuzzy_sugeno.py")
+        Dim lokal As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "fuzzy_sugeno.py")
 
         If File.Exists(lokal) Then
             Return lokal

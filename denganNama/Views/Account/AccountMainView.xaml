@@ -1,0 +1,103 @@
+﻿<Page x:Class="AccountMainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Profil Pengguna"
+      Background="White" FontFamily="Segoe UI">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="720" HorizontalAlignment="Left">
+
+            <!-- Banner Header Profil Berwarna Gradasi -->
+            <Border CornerRadius="16" Height="100" Margin="0,0,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#4F46E5" Offset="0.0"/>
+                        <GradientStop Color="#06B6D4" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!-- Bagian Avatar Melayang Atas Banner -->
+            <Grid Margin="25,-40,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Width="80" Height="80" CornerRadius="40" Background="#1E293B" 
+                        BorderBrush="White" BorderThickness="4">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="12" Color="#000000" Opacity="0.15" ShadowDepth="3"/>
+                    </Border.Effect>
+                    <TextBlock Text="👤" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </Border>
+
+                <!-- Nama Gibran & Status Terverifikasi -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="16,0,0,4">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="lblNama" Text="Gibran" FontSize="20" FontWeight="Bold" Foreground="#0F172A"/>
+                        <Border Background="#DEF7EC" CornerRadius="10" Padding="10,3" Margin="10,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="✓ Terverifikasi" Foreground="#03543F" FontWeight="Bold" FontSize="11"/>
+                        </Border>
+                    </StackPanel>
+                    <TextBlock Text="Mahasiswa Aktif • Sistem TANDAIN" Foreground="#64748B" FontSize="12" Margin="0,2,0,0"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- KARTU 1: DATA AKUN GIBRAN -->
+            <Border BorderBrush="#E2E8F0" BorderThickness="1.5" CornerRadius="14" Padding="25" Background="#F8FAFC" Margin="0,0,0,18">
+                <StackPanel>
+                    <TextBlock Text="INFORMASI AKUN" FontWeight="Bold" FontSize="12" Foreground="#475569" Margin="0,0,0,15"/>
+                    <Separator Background="#E2E8F0" Margin="0,0,0,16"/>
+
+                    <Grid Margin="0,0,0,12">
+                        <TextBlock Text="Nomor Induk Mahasiswa (NIM)" Foreground="#64748B" FontSize="13"/>
+                        <TextBlock x:Name="lblUsername" Text="2023001" FontWeight="Bold" FontSize="14" Foreground="#1E293B" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,12">
+                        <TextBlock Text="Alamat Surel (Email)" Foreground="#64748B" FontSize="13"/>
+                        <TextBlock Text="gibran@kampus.ac.id" FontWeight="SemiBold" FontSize="13" Foreground="#1E293B" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid>
+                        <TextBlock Text="Hak Akses (Role)" Foreground="#64748B" FontSize="13"/>
+                        <TextBlock x:Name="lblRole" Text="Mahasiswa" FontWeight="Bold" FontSize="13" Foreground="#2563EB" HorizontalAlignment="Right"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- KARTU 2: KEAMANAN & GANTI PASSWORD -->
+            <Border BorderBrush="#E2E8F0" BorderThickness="1.5" CornerRadius="14" Padding="22" Background="White">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left" VerticalAlignment="Center">
+                        <TextBlock Text="Keamanan Kata Sandi" FontWeight="Bold" FontSize="14" Foreground="#0F172A"/>
+                        <TextBlock Text="Perbarui kata sandi akun Anda demi menjaga keamanan data pribadi." FontSize="12" Foreground="#64748B" Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <Button x:Name="btnGantiPassword" Height="40" Padding="20,0" Foreground="White" 
+                            FontWeight="Bold" FontSize="12" HorizontalAlignment="Right" Cursor="Hand" Click="btnGantiPassword_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="9">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#4F46E5" Offset="0.0"/>
+                                            <GradientStop Color="#3B82F6" Offset="1.0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔒 " VerticalAlignment="Center"/>
+                            <TextBlock Text="Ganti Password" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
