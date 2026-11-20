@@ -1,0 +1,3 @@
+﻿Class MhsQuestionView
+
+End Class
