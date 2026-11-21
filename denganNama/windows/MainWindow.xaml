@@ -15,7 +15,7 @@
             <!-- 3. Main Konten Area -->
         </Grid.RowDefinitions>
 
-        <!-- 1. HEADER ATAS (Kiri: TANDAIN, Kanan: Gibran, Tengah Bersih) -->
+        <!-- 1. HEADER ATAS (Kiri: TANDAIN, Kanan: Profil user yang login) -->
         <Border Grid.Row="0" Background="#0F172A" Padding="32,0">
             <Grid VerticalAlignment="Center">
                 <!-- Sisi Kiri: Brand & Logo TANDAIN -->
@@ -35,7 +35,7 @@
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Sisi Kanan: Profil Pengguna Gibran -->
+                <!-- Sisi Kanan: Profil Pengguna (diisi dari UserSession) -->
                 <Border Background="#1E293B" BorderBrush="#334155" BorderThickness="1" CornerRadius="22" Padding="12,5" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
                         <Border Width="30" Height="30" CornerRadius="15" Margin="0,0,10,0">
@@ -48,8 +48,8 @@
                             <TextBlock Text="👤" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center" Margin="0,0,8,0">
-                            <TextBlock x:Name="txtNamaUser" Text="Gibran" Foreground="White" FontWeight="Bold" FontSize="12"/>
-                            <TextBlock Text="Mahasiswa" Foreground="#38BDF8" FontSize="10"/>
+                            <TextBlock x:Name="txtNamaUser" Text="" Foreground="White" FontWeight="Bold" FontSize="12"/>
+                            <TextBlock x:Name="txtRoleUser" Text="" Foreground="#38BDF8" FontSize="10"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -108,26 +108,26 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Baris Tahun Ajaran di Bawah Navbar -->
+                    <!-- Baris Judul Halaman & Periode Aktif -->
                     <RowDefinition Height="*"/>
                     <!-- Wadah Konten Page -->
                 </Grid.RowDefinitions>
 
-                <!-- BARIS TAHUN AJARAN DI BAWAH NAVBAR -->
+                <!-- BARIS JUDUL HALAMAN & PERIODE AKTIF -->
                 <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16,10" Margin="0,0,0,22">
                     <Grid>
                         <!-- Kiri: Judul Halaman -->
-                        <TextBlock x:Name="txtJudulHalaman" Text="Pengaturan Akun Pengguna" FontSize="15" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="txtJudulHalaman" Text="" FontSize="15" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
 
-                        <!-- Kanan: Info Periode Aktif -->
+                        <!-- Kanan: Info Periode Aktif (diisi dari database) -->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <Ellipse Width="8" Height="8" Fill="#10B981" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Tahun Ajaran 2026/2027 Ganjil (Periode Aktif)" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="txtPeriodeAktif" Text="Memuat periode..." Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Grid>
                 </Border>
 
-                <!-- Frame Tempat Halaman Akun Ditampilkan -->
+                <!-- Frame Tempat Halaman Ditampilkan -->
                 <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
             </Grid>
         </Border>

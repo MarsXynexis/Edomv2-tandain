@@ -218,4 +218,4 @@ INSERT INTO pertanyaan (kategori, pertanyaan) VALUES
 
 UPDATE users SET password = SHA2('admin', 256) WHERE username = 'admin';
 UPDATE users SET password = SHA2('dosen', 256) WHERE role = 'dosen';
-UPDATE users SET password = SHA2('mhs', 256)   WHERE role = 'mahasiswa';jawaban
+UPDATE users SET password = SHA2('mhs', 256)   WHERE role = 'mahasiswa';
