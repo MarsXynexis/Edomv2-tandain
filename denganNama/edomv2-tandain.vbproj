@@ -27,4 +27,9 @@
 		<PackageReference Include="MySql.Data" Version="26.10.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Resource Include="assets\img\edom-icon.png" />
+		<Resource Include="assets\img\edom-login-art.jpg" />
+	</ItemGroup>
+
 </Project>
