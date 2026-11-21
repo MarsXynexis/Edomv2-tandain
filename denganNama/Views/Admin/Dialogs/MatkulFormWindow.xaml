@@ -1,0 +1,103 @@
+<Window x:Class="MatkulFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tambah Mata Kuliah"
+        SizeToContent="Height"
+        Width="440"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource SurfaceBgBrush}"
+        FontFamily="Segoe UI">
+
+    <Grid Margin="24,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock Text="Tambah Mata Kuliah"
+                       FontSize="19"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource InkPrimaryBrush}"/>
+            <TextBlock Text="Mata kuliah baru akan langsung tersedia di daftar penugasan pengampu."
+                       FontSize="12.5"
+                       Foreground="{StaticResource InkSecondaryBrush}"
+                       TextWrapping="Wrap"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Grid Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Kode Mata Kuliah" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <Border Style="{StaticResource InputFrameBorderStyle}">
+                        <TextBox x:Name="txtKode"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 VerticalContentAlignment="Center"
+                                 Padding="12,0"
+                                 FontSize="13"
+                                 MaxLength="20"
+                                 Foreground="{StaticResource InkPrimaryBrush}"
+                                 TabIndex="0"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Bobot SKS" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <Border Style="{StaticResource InputFrameBorderStyle}">
+                        <TextBox x:Name="txtSks"
+                                 Text="2"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 VerticalContentAlignment="Center"
+                                 Padding="12,0"
+                                 FontSize="13"
+                                 MaxLength="1"
+                                 Foreground="{StaticResource InkPrimaryBrush}"
+                                 TabIndex="1"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Nama Mata Kuliah" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+            <Border Style="{StaticResource InputFrameBorderStyle}">
+                <TextBox x:Name="txtNama"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         VerticalContentAlignment="Center"
+                         Padding="12,0"
+                         FontSize="13"
+                         Foreground="{StaticResource InkPrimaryBrush}"
+                         TabIndex="2"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="btnBatal"
+                    Content="Batal"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    MinWidth="90"
+                    IsCancel="True"
+                    TabIndex="4"
+                    Click="btnBatal_Click"/>
+
+            <Button x:Name="btnSimpan"
+                    Content="Simpan"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    MinWidth="104"
+                    Margin="10,0,0,0"
+                    IsDefault="True"
+                    TabIndex="3"
+                    Click="btnSimpan_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

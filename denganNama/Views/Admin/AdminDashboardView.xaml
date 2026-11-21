@@ -1,0 +1,216 @@
+﻿<Page x:Class="AdminDashboardView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Rekapitulasi"
+      Background="{StaticResource SurfaceBgBrush}"
+      FontFamily="Segoe UI">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Background="{StaticResource SubtleBgBrush}"
+                BorderBrush="{StaticResource BorderDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="0,13"
+                Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="20,0">
+                    <TextBlock Text="Mahasiswa Aktif" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+                    <TextBlock x:Name="txtTotalMahasiswa" Text="0" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,3,0,0"/>
+                </StackPanel>
+
+                <Rectangle Grid.Column="1" Fill="{StaticResource BorderLightBrush}"/>
+
+                <StackPanel Grid.Column="2" Margin="20,0">
+                    <TextBlock Text="Dosen Aktif" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+                    <TextBlock x:Name="txtTotalDosen" Text="0" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,3,0,0"/>
+                </StackPanel>
+
+                <Rectangle Grid.Column="3" Fill="{StaticResource BorderLightBrush}"/>
+
+                <StackPanel Grid.Column="4" Margin="20,0">
+                    <TextBlock Text="Kelas Aktif" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+                    <TextBlock x:Name="txtTotalKelas" Text="0" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,3,0,0"/>
+                </StackPanel>
+
+                <Rectangle Grid.Column="5" Fill="{StaticResource BorderLightBrush}"/>
+
+                <StackPanel Grid.Column="6" Margin="20,0">
+                    <TextBlock Text="Responden Periode Ini" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+                    <TextBlock x:Name="txtTotalPengisian" Text="0" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" Margin="0,3,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="0,0,0,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="165"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource InputFrameBorderStyle}" Height="38">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Path Grid.Column="0"
+                          Data="M 11,4 C 7.13,4 4,7.13 4,11 C 4,14.87 7.13,18 11,18 C 12.66,18 14.18,17.42 15.38,16.45 L 20,21 L 21.4,19.6 L 16.8,15 C 17.56,13.85 18,12.48 18,11 C 18,7.13 14.87,4 11,4 Z M 11,6 C 13.76,6 16,8.24 16,11 C 16,13.76 13.76,16 11,16 C 8.24,16 6,13.76 6,11 C 6,8.24 8.24,6 11,6 Z"
+                          Fill="{StaticResource InkSecondaryBrush}"
+                          Width="15"
+                          Height="15"
+                          Stretch="Uniform"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+
+                    <Grid Grid.Column="1">
+                        <TextBlock x:Name="lblPlaceholderCari"
+                                   Text="Cari NIP atau nama dosen..."
+                                   Foreground="{StaticResource InkSecondaryBrush}"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Margin="2,0,12,0"
+                                   IsHitTestVisible="False"/>
+
+                        <TextBox x:Name="txtCari"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 VerticalContentAlignment="Center"
+                                 Padding="2,0,12,0"
+                                 FontSize="13"
+                                 Foreground="{StaticResource InkPrimaryBrush}"
+                                 TextChanged="txtCari_TextChanged"/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <ComboBox x:Name="cmbPeriode"
+                      Grid.Column="2"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      SelectionChanged="cmbPeriode_SelectionChanged"/>
+
+            <ComboBox x:Name="cmbFilterPredikat"
+                      Grid.Column="4"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      SelectionChanged="cmbFilterPredikat_SelectionChanged">
+                <ComboBoxItem Content="Semua Predikat" Tag="" IsSelected="True"/>
+                <ComboBoxItem Content="Apresiasi" Tag="Apresiasi"/>
+                <ComboBoxItem Content="Pertahankan" Tag="Pertahankan"/>
+                <ComboBoxItem Content="Evaluasi" Tag="Evaluasi"/>
+                <ComboBoxItem Content="Belum Dinilai" Tag="Belum Dinilai"/>
+            </ComboBox>
+
+            <StackPanel Grid.Column="6" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="btnHitungFuzzy"
+                        Content="Hitung &amp; Simpan Fuzzy"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Click="btnHitungFuzzy_Click"/>
+
+                <Button x:Name="btnDetailDosen"
+                        Content="Lihat Detail"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Margin="8,0,0,0"
+                        Click="btnDetailDosen_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2"
+                Background="{StaticResource SurfaceBgBrush}"
+                BorderBrush="{StaticResource BorderDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                ClipToBounds="True">
+            <Grid>
+                <DataGrid x:Name="dgRekapDosen"
+                          Style="{StaticResource CleanDataGridStyle}"
+                          MouseDoubleClick="dgRekapDosen_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="NIP" Binding="{Binding nip}" Width="1.3*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Nama Dosen" Binding="{Binding nama_dosen}" Width="2*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Kelas" Binding="{Binding kelas_label}" Width="0.7*"/>
+
+                        <DataGridTextColumn Header="Resp." Binding="{Binding responden_label}" Width="0.7*"/>
+
+                        <DataGridTextColumn Header="Ped." Binding="{Binding ped}" Width="62"/>
+                        <DataGridTextColumn Header="Prof." Binding="{Binding prof}" Width="62"/>
+                        <DataGridTextColumn Header="Kep." Binding="{Binding kep}" Width="62"/>
+                        <DataGridTextColumn Header="Sos." Binding="{Binding sos}" Width="62"/>
+
+                        <DataGridTextColumn Header="Skor Akhir" Binding="{Binding skor_akhir}" Width="82">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTemplateColumn Header="Predikat" Width="130">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Ellipse Width="7" Height="7" Fill="{Binding predikat_color}" Margin="0,0,7,0"/>
+                                        <TextBlock Text="{Binding predikat}" Foreground="{Binding predikat_color}" FontWeight="SemiBold" FontSize="12.5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock x:Name="txtKosongRekap"
+                           Text="Belum ada data evaluasi dosen untuk filter yang dipilih."
+                           Foreground="{StaticResource InkSecondaryBrush}"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Visibility="Collapsed"/>
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.Row="3" LastChildFill="False" Margin="2,10,0,0">
+            <TextBlock x:Name="txtInfoRekap" DockPanel.Dock="Left" Text="" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+            <TextBlock DockPanel.Dock="Right" Text="Klik dua kali baris dosen untuk rincian per kelas" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
+        </DockPanel>
+    </Grid>
+</Page>
