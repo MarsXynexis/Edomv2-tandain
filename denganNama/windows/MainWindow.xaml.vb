@@ -19,7 +19,6 @@ Public Class MainWindow
             btnAdminSetup,
             btnAdminKelas,
             btnAdminDosen,
-            btnAdminMahasiswa,
             btnMenuAkun
         }
 
@@ -32,7 +31,7 @@ Public Class MainWindow
     Private Sub BukaHalamanAwal()
         Select Case UserSession.Role
             Case "admin"
-                NavigasiKeHalaman(New AdminDashboardView(), "Dashboard Admin", "Ringkasan administrasi dan statistik EDOM", Nothing)
+                NavigasiKeHalaman(New AdminDashboardView(), "Rekapitulasi", "Evaluasi seluruh dosen dan perhitungan Fuzzy Sugeno", btnAdminRekap)
 
             Case "dosen"
                 NavigasiKeHalaman(New DosenMainView(), "Capaian Evaluasi", "Ringkasan hasil evaluasi dosen", btnDosenMain)
@@ -131,9 +130,8 @@ Public Class MainWindow
         End Select
     End Sub
 
-    Public Sub NavigasiKeHalaman(halaman As Page, judul As String, subJudul As String, tombolAktif As Button)
+    Public Sub NavigasiKeHalaman(halaman As Page, judul As String, Optional subJudul As String = "", Optional tombolAktif As Button = Nothing)
         txtJudulHalaman.Text = judul
-        txtSubJudulHalaman.Text = subJudul
         TandaiMenuAktif(tombolAktif)
         MainFrame.Navigate(halaman)
     End Sub
@@ -173,7 +171,7 @@ Public Class MainWindow
     End Sub
 
     Private Sub BtnAdminRekap_Click(sender As Object, e As RoutedEventArgs)
-        NavigasiKeHalaman(New AdminDashboardView(), "Rekapitulasi & Dashboard", "Ringkasan administrasi dan statistik EDOM", btnAdminRekap)
+        NavigasiKeHalaman(New AdminDashboardView(), "Rekapitulasi", "Evaluasi seluruh dosen dan perhitungan Fuzzy Sugeno", btnAdminRekap)
     End Sub
 
     Private Sub BtnAdminSetup_Click(sender As Object, e As RoutedEventArgs)
@@ -181,15 +179,11 @@ Public Class MainWindow
     End Sub
 
     Private Sub BtnAdminKelas_Click(sender As Object, e As RoutedEventArgs)
-        NavigasiKeHalaman(New AdminKelasView(), "Daftar Kelas", "Pengelolaan data kelas jurusan", btnAdminKelas)
+        NavigasiKeHalaman(New AdminKelasView(), "Kelas & Mahasiswa", "Klik dua kali kelas untuk kelola anggota mahasiswa dan dosen pengampu", btnAdminKelas)
     End Sub
 
     Private Sub BtnAdminDosen_Click(sender As Object, e As RoutedEventArgs)
-        NavigasiKeHalaman(New AdminUserView(), "Daftar Dosen", "Pengelolaan data akun dosen dan pengguna", btnAdminDosen)
-    End Sub
-
-    Private Sub BtnAdminMahasiswa_Click(sender As Object, e As RoutedEventArgs)
-        NavigasiKeHalaman(New AdminUserView(), "Daftar Mahasiswa", "Pengelolaan data akun mahasiswa dan pengguna", btnAdminMahasiswa)
+        NavigasiKeHalaman(New AdminUserView("dosen"), "Daftar Dosen", "Akun dosen aktif (klik dua kali baris untuk lihat detail evaluasi)", btnAdminDosen)
     End Sub
 
     Private Sub BtnMenuAkun_Click(sender As Object, e As RoutedEventArgs)
