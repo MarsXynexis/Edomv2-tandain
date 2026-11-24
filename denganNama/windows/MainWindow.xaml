@@ -3,60 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="EDOM TIK - Sistem Evaluasi Dosen Oleh Mahasiswa"
         Icon="/assets/img/edom-icon.png"
-        Height="760"
-        Width="1220"
-        MinHeight="620"
-        MinWidth="960"
+        Height="780"
+        Width="1360"
+        MinHeight="640"
+        MinWidth="1100"
         WindowStartupLocation="CenterScreen"
-        FontFamily="Segoe UI"
-        Background="{StaticResource CanvasBgBrush}">
+        FontFamily="{StaticResource BodyFontFamily}"
+        Background="{StaticResource SurfaceBgBrush}">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="58"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition x:Name="rowTopbar" Height="0"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="{StaticResource HeaderBgBrush}" Padding="24,0">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Image Source="/assets/img/edom-icon.png"
-                           Width="32"
-                           Height="32"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Margin="0,0,12,0"/>
-
-                    <TextBlock Text="EDOM TIK" Foreground="{StaticResource InkOnDarkBrush}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                    <Border Width="1" Height="16" Background="{StaticResource HeaderBorderBrush}" Margin="12,0"/>
-                    <TextBlock Text="Sistem Evaluasi Dosen Oleh Mahasiswa" Foreground="{StaticResource InkOnDarkMutedBrush}" FontSize="12.5" VerticalAlignment="Center"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,14,0">
-                        <TextBlock x:Name="txtNamaUser" Text="-" Foreground="{StaticResource InkOnDarkBrush}" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                        <TextBlock x:Name="txtRoleUser" Text="-" Foreground="{StaticResource InkOnDarkMutedBrush}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </StackPanel>
-
-                    <Button x:Name="btnLogout"
-                            Style="{StaticResource HeaderLogoutButtonStyle}"
-                            ToolTip="Keluar dari akun"
-                            Click="BtnLogout_Click">
-                        <Path Data="M 9,21 H 5 C 3.9,21 3,20.1 3,19 V 5 C 3,3.9 3.9,3 5,3 H 9 M 16,17 L 21,12 L 16,7 M 21,12 H 9"
-                              Stroke="{StaticResource InkOnDarkBrush}"
-                              StrokeThickness="1.9"
-                              StrokeStartLineCap="Round"
-                              StrokeEndLineCap="Round"
-                              StrokeLineJoin="Round"
-                              Width="16"
-                              Height="16"
-                              Stretch="Uniform"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="1" Background="{StaticResource SurfaceBgBrush}" BorderBrush="{StaticResource BorderDefaultBrush}" BorderThickness="0,0,0,1" Padding="24,0">
+        <Border x:Name="topbarPanel"
+                Grid.Row="0"
+                Background="{StaticResource HeaderBgBrush}"
+                BorderBrush="{StaticResource HeaderSubtleBgBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="24,0"
+                Visibility="Collapsed">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -64,48 +31,348 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/assets/img/edom-icon.png"
+                           Width="30"
+                           Height="30"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Margin="0,0,10,0"/>
+
+                    <TextBlock Text="EDOM TIK"
+                               FontFamily="{StaticResource DisplayFontFamily}"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource InkOnDarkBrush}"
+                               VerticalAlignment="Center"/>
+
+                    <Border Width="1"
+                            Height="18"
+                            Background="{StaticResource HeaderBorderBrush}"
+                            Margin="16,0"/>
+
                     <StackPanel x:Name="panelNavMahasiswa" Orientation="Horizontal" Visibility="Collapsed">
-                        <Button x:Name="btnMhsDashboard" Content="Daftar Mata Kuliah" Style="{StaticResource NavTabButtonStyle}" Click="BtnMhsDashboard_Click"/>
-                        <Button x:Name="btnMhsQuestion" Content="Kuesioner" Style="{StaticResource NavTabButtonStyle}" Click="BtnMhsQuestion_Click"/>
+                        <Button x:Name="btnMhsDashboard" Content="Daftar Mata Kuliah" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMhsDashboard_Click"/>
+                        <Button x:Name="btnMhsQuestion" Content="Kuesioner" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMhsQuestion_Click"/>
                     </StackPanel>
 
                     <StackPanel x:Name="panelNavDosen" Orientation="Horizontal" Visibility="Collapsed">
-                        <Button x:Name="btnDosenMain" Content="Capaian Evaluasi" Style="{StaticResource NavTabButtonStyle}" Click="BtnDosenMain_Click"/>
-                        <Button x:Name="btnDosenDetail" Content="Rincian Kelas" Style="{StaticResource NavTabButtonStyle}" Click="BtnDosenDetail_Click"/>
+                        <Button x:Name="btnDosenMain" Content="Capaian Evaluasi" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnDosenMain_Click"/>
+                        <Button x:Name="btnDosenDetail" Content="Rincian Kelas" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnDosenDetail_Click"/>
                     </StackPanel>
 
-                    <StackPanel x:Name="panelNavAdmin" Orientation="Horizontal" Visibility="Collapsed">
-                        <Button x:Name="btnAdminRekap" Content="Rekapitulasi" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminRekap_Click"/>
-                        <Button x:Name="btnAdminSetup" Content="Setup EDOM" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminSetup_Click"/>
-                        <Button x:Name="btnAdminKelas" Content="Kelas &amp; Mahasiswa" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminKelas_Click"/>
-                        <Button x:Name="btnAdminDosen" Content="Daftar Dosen" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminDosen_Click"/>
-                    </StackPanel>
-
-                    <Button x:Name="btnMenuAkun" Content="Akun Saya" Style="{StaticResource NavTabButtonStyle}" Click="BtnMenuAkun_Click"/>
+                    <Button x:Name="btnTopMenuAkun" Content="Akun Saya" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMenuAkun_Click"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
-                    <Ellipse x:Name="indikatorPeriode" Width="8" Height="8" Fill="{StaticResource StatusClosedBrush}" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="txtPeriodeAktif" Text="Periode: -" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="{StaticResource SidebarCardBgBrush}"
+                            BorderBrush="{StaticResource SidebarBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="10,5"
+                            Margin="0,0,16,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Ellipse x:Name="indikatorPeriodeTop"
+                                     Width="7"
+                                     Height="7"
+                                     Fill="{StaticResource StatusClosedOnDarkBrush}"
+                                     Margin="0,0,7,0"
+                                     VerticalAlignment="Center"/>
+                            <TextBlock x:Name="txtPeriodeAktifTop"
+                                       Text="-"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource InkOnDarkBrush}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock x:Name="txtNamaUserTop"
+                                   Text="-"
+                                   Foreground="{StaticResource InkOnDarkBrush}"
+                                   FontSize="12.5"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="txtRoleUserTop"
+                                   Text="-"
+                                   Foreground="{StaticResource InkOnDarkSecondaryBrush}"
+                                   FontSize="11"
+                                   HorizontalAlignment="Right"/>
+                    </StackPanel>
+
+                    <Button x:Name="btnLogoutTop"
+                            Style="{StaticResource HeaderLogoutButtonStyle}"
+                            ToolTip="Keluar dari akun"
+                            Click="BtnLogout_Click">
+                        <Path Data="M 9,21 H 5 C 3.9,21 3,20.1 3,19 V 5 C 3,3.9 3.9,3 5,3 H 9 M 16,17 L 21,12 L 16,7 M 21,12 H 9"
+                              Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                              StrokeThickness="1.8"
+                              StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round"
+                              StrokeLineJoin="Round"
+                              Width="15"
+                              Height="15"
+                              Stretch="Uniform"/>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <Grid Grid.Row="2" Background="{StaticResource CanvasBgBrush}">
-            <Border Margin="20,16" Background="{StaticResource SurfaceBgBrush}" BorderBrush="{StaticResource BorderDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="24,20">
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="colSidebar" Width="256"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="sidebarPanel"
+                    Grid.Column="0"
+                    Background="{StaticResource HeaderBgBrush}"
+                    BorderBrush="{StaticResource HeaderSubtleBgBrush}"
+                    BorderThickness="0,0,1,0"
+                    ClipToBounds="True">
                 <Grid>
+                    <Canvas Width="256" Height="145" VerticalAlignment="Top" HorizontalAlignment="Left" IsHitTestVisible="False">
+                        <Path Data="M 142,0 L 256,0 L 256,112 C 216,84 174,52 142,0 Z" Fill="#132236"/>
+                        <Path Data="M 182,0 L 256,0 L 256,68 C 228,50 202,28 182,0 Z" Fill="#10292D"/>
+                    </Canvas>
+
+                    <Canvas Width="256" Height="340" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsHitTestVisible="False">
+                        <Path Data="M 0,132 C 62,82 146,162 256,74 L 256,340 L 0,340 Z" Fill="#122033"/>
+                        <Path Data="M 0,192 C 88,128 164,204 256,134 L 256,340 L 0,340 Z" Fill="#13273A"/>
+                        <Path Data="M 0,192 C 88,128 164,204 256,134" Stroke="#193848" StrokeThickness="1.2"/>
+                        <Path Data="M 0,244 C 72,188 158,246 256,184 L 256,340 L 0,340 Z" Fill="#102B30"/>
+                        <Path Data="M 0,244 C 72,188 158,246 256,184" Stroke="#18474B" StrokeThickness="1.2"/>
+                        <Path Data="M 0,296 C 92,254 172,288 256,238 L 256,340 L 0,340 Z" Fill="#123438"/>
+                    </Canvas>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,22,18,18" VerticalAlignment="Center">
+                        <Image Source="/assets/img/edom-icon.png"
+                               Width="34"
+                               Height="34"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Margin="0,0,12,0"/>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="EDOM TIK"
+                                       FontFamily="{StaticResource DisplayFontFamily}"
+                                       FontSize="16.5"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource InkOnDarkBrush}"/>
+                            <TextBlock Text="Politeknik Negeri Jakarta"
+                                       FontSize="11.5"
+                                       Foreground="{StaticResource InkOnDarkSecondaryBrush}"
+                                       Margin="0,1,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Border Grid.Row="1"
+                            Background="{StaticResource SidebarCardBgBrush}"
+                            BorderBrush="{StaticResource SidebarBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="14,0,14,18"
+                            Padding="12,10">
+                        <StackPanel>
+                            <TextBlock Text="Periode Akademik"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource InkOnDarkSecondaryBrush}"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <Ellipse x:Name="indikatorPeriode"
+                                         Width="7"
+                                         Height="7"
+                                         Fill="{StaticResource StatusClosedOnDarkBrush}"
+                                         Margin="0,5,8,0"
+                                         VerticalAlignment="Top"/>
+                                <TextBlock x:Name="txtPeriodeAktif"
+                                           Text="-"
+                                           TextWrapping="Wrap"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           LineHeight="17"
+                                           Foreground="{StaticResource InkOnDarkBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="12,0">
+                            <TextBlock Text="Menu Utama"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource InkOnDarkSecondaryBrush}"
+                                       Margin="10,2,10,8"/>
+
+                            <StackPanel x:Name="panelNavAdmin" Orientation="Vertical" Visibility="Collapsed">
+                                <Button x:Name="btnAdminRekap" Style="{StaticResource SidebarNavButtonStyle}" Click="BtnAdminRekap_Click">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Path Data="M 18,20 V 10 M 12,20 V 4 M 6,20 V 14"
+                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                              StrokeThickness="1.8"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Width="15"
+                                              Height="15"
+                                              Stretch="Uniform"
+                                              Margin="0,0,10,0"/>
+                                        <TextBlock Text="Rekapitulasi" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button x:Name="btnAdminSetup" Style="{StaticResource SidebarNavButtonStyle}" Click="BtnAdminSetup_Click">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Path Data="M 4,21 V 14 M 4,10 V 3 M 12,21 V 12 M 12,8 V 3 M 20,21 V 16 M 20,12 V 3 M 1,14 H 7 M 9,8 H 15 M 17,16 H 23"
+                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                              StrokeThickness="1.7"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Width="15"
+                                              Height="15"
+                                              Stretch="Uniform"
+                                              Margin="0,0,10,0"/>
+                                        <TextBlock Text="Setup EDOM" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button x:Name="btnAdminKelas" Style="{StaticResource SidebarNavButtonStyle}" Click="BtnAdminKelas_Click">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Path Data="M 12,2 L 2,7 L 12,12 L 22,7 Z M 2,17 L 12,22 L 22,17 M 2,12 L 12,17 L 22,12"
+                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                              StrokeThickness="1.7"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Width="15"
+                                              Height="15"
+                                              Stretch="Uniform"
+                                              Margin="0,0,10,0"/>
+                                        <TextBlock Text="Kelas &amp; Mahasiswa" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button x:Name="btnAdminDosen" Style="{StaticResource SidebarNavButtonStyle}" Click="BtnAdminDosen_Click">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Path Data="M 17,21 V 19 C 17,16.8 15.2,15 13,15 H 5 C 2.8,15 1,16.8 1,19 V 21 M 9,11 C 11.2,11 13,9.2 13,7 C 13,4.8 11.2,3 9,3 C 6.8,3 5,4.8 5,7 C 5,9.2 6.8,11 9,11 Z M 23,21 V 19 C 23,17.1 21.7,15.6 20,15.1 M 16,3.1 C 17.8,3.6 19,5.1 19,7 C 19,8.9 17.8,10.4 16,10.9"
+                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                              StrokeThickness="1.7"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Width="15"
+                                              Height="15"
+                                              Stretch="Uniform"
+                                              Margin="0,0,10,0"/>
+                                        <TextBlock Text="Daftar Dosen" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Pengaturan"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource InkOnDarkSecondaryBrush}"
+                                       Margin="10,18,10,8"/>
+
+                            <Button x:Name="btnMenuAkun" Style="{StaticResource SidebarNavButtonStyle}" Click="BtnMenuAkun_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Path Data="M 20,21 V 19 C 20,16.8 18.2,15 16,15 H 8 C 5.8,15 4,16.8 4,19 V 21 M 12,11 C 14.2,11 16,9.2 16,7 C 16,4.8 14.2,3 12,3 C 9.8,3 8,4.8 8,7 C 8,9.2 9.8,11 12,11 Z"
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                          StrokeThickness="1.7"
+                                          StrokeStartLineCap="Round"
+                                          StrokeEndLineCap="Round"
+                                          StrokeLineJoin="Round"
+                                          Width="15"
+                                          Height="15"
+                                          Stretch="Uniform"
+                                          Margin="0,0,10,0"/>
+                                    <TextBlock Text="Akun Saya" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                        <Border Grid.Row="3"
+                                BorderBrush="{StaticResource SidebarBorderBrush}"
+                                BorderThickness="0,1,0,0"
+                                Margin="14,10,14,16"
+                                Padding="6,14,4,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                    <TextBlock x:Name="txtNamaUser"
+                                               Text="-"
+                                               Foreground="{StaticResource InkOnDarkBrush}"
+                                               FontSize="12.5"
+                                               FontWeight="SemiBold"
+                                               LineHeight="17"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="txtRoleUser"
+                                               Text="-"
+                                               Foreground="{StaticResource InkOnDarkSecondaryBrush}"
+                                               FontSize="11"
+                                               Margin="0,2,0,0"/>
+                                </StackPanel>
+
+                                <Button x:Name="btnLogout"
+                                        Grid.Column="1"
+                                        Style="{StaticResource HeaderLogoutButtonStyle}"
+                                        ToolTip="Keluar dari akun"
+                                        VerticalAlignment="Center"
+                                        Click="BtnLogout_Click">
+                                    <Path Data="M 9,21 H 5 C 3.9,21 3,20.1 3,19 V 5 C 3,3.9 3.9,3 5,3 H 9 M 16,17 L 21,12 L 16,7 M 21,12 H 9"
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                          StrokeThickness="1.8"
+                                          StrokeStartLineCap="Round"
+                                          StrokeEndLineCap="Round"
+                                          StrokeLineJoin="Round"
+                                          Width="15"
+                                          Height="15"
+                                          Stretch="Uniform"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" Background="{StaticResource SurfaceBgBrush}">
+                <Grid Margin="28,22,28,20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Row="0" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,12" Margin="0,0,0,16">
-                        <TextBlock x:Name="txtJudulHalaman" Text="Akun Saya" FontSize="17" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" VerticalAlignment="Center"/>
+                    <Border Grid.Row="0"
+                            BorderBrush="{StaticResource BorderLightBrush}"
+                            BorderThickness="0,0,0,1"
+                            Padding="0,0,0,14"
+                            Margin="0,0,0,18">
+                        <TextBlock x:Name="txtJudulHalaman"
+                                   Text="Akun Saya"
+                                   FontFamily="{StaticResource DisplayFontFamily}"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource InkPrimaryBrush}"
+                                   VerticalAlignment="Center"/>
                     </Border>
 
                     <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
                 </Grid>
-            </Border>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

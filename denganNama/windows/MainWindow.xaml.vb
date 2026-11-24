@@ -19,7 +19,8 @@ Public Class MainWindow
             btnAdminSetup,
             btnAdminKelas,
             btnAdminDosen,
-            btnMenuAkun
+            btnMenuAkun,
+            btnTopMenuAkun
         }
 
         MuatIdentitasHeader()
@@ -54,21 +55,27 @@ Public Class MainWindow
     End Sub
 
     Private Sub MuatIdentitasHeader()
-        txtNamaUser.Text = If(Not String.IsNullOrEmpty(UserSession.Nama), UserSession.Nama, UserSession.Username)
+        Dim namaTampil As String = If(Not String.IsNullOrEmpty(UserSession.Nama), UserSession.Nama, UserSession.Username)
+        txtNamaUser.Text = namaTampil
+        txtNamaUserTop.Text = namaTampil
 
+        Dim labelPeran As String
         Select Case UserSession.Role
             Case "admin"
-                txtRoleUser.Text = "Admin Jurusan"
+                labelPeran = "Admin Jurusan"
             Case "dosen"
-                txtRoleUser.Text = "Dosen"
+                labelPeran = "Dosen"
             Case "mahasiswa"
-                txtRoleUser.Text = "Mahasiswa"
+                labelPeran = "Mahasiswa"
             Case Else
-                txtRoleUser.Text = UserSession.Role
+                labelPeran = UserSession.Role
         End Select
+
+        txtRoleUser.Text = labelPeran
+        txtRoleUserTop.Text = labelPeran
     End Sub
 
-    Private Sub MuatPeriodeAktif()
+    Public Sub MuatPeriodeAktif()
         Dim query As String = "SELECT nama_periode, status_aktif, " &
                               "(CURDATE() BETWEEN tanggal_mulai AND tanggal_selesai) AS dalam_rentang " &
                               "FROM periode_edom " &
@@ -77,7 +84,7 @@ Public Class MainWindow
         Try
             Using conn As MySqlConnection = db.GetConnection()
                 If conn Is Nothing Then
-                    SetStatusPeriode("Periode: Koneksi terputus", "StatusClosedBrush")
+                    SetStatusPeriode("Koneksi terputus", "StatusClosedOnDarkBrush")
                     Exit Sub
                 End If
 
@@ -89,29 +96,32 @@ Public Class MainWindow
                             Dim dalamRentang As Boolean = Convert.ToBoolean(reader("dalam_rentang"))
 
                             If statusAktif AndAlso dalamRentang Then
-                                SetStatusPeriode("Periode " & namaPeriode & " (Dibuka)", "StatusOpenBrush")
+                                SetStatusPeriode(namaPeriode & " · Dibuka", "StatusOpenOnDarkBrush")
                             ElseIf statusAktif Then
-                                SetStatusPeriode("Periode " & namaPeriode & " (Di Luar Jadwal)", "StatusClosedBrush")
+                                SetStatusPeriode(namaPeriode & " · Di Luar Jadwal", "StatusWarningOnDarkBrush")
                             Else
-                                SetStatusPeriode("Periode " & namaPeriode & " (Ditutup)", "StatusClosedBrush")
+                                SetStatusPeriode(namaPeriode & " · Ditutup", "StatusClosedOnDarkBrush")
                             End If
                         Else
-                            SetStatusPeriode("Belum ada periode terdaftar", "StatusClosedBrush")
+                            SetStatusPeriode("Belum ada periode", "StatusClosedOnDarkBrush")
                         End If
                     End Using
                 End Using
             End Using
         Catch ex As Exception
-            SetStatusPeriode("Periode gagal dimuat", "StatusClosedBrush")
+            SetStatusPeriode("Gagal dimuat", "StatusClosedOnDarkBrush")
         End Try
     End Sub
 
     Private Sub SetStatusPeriode(teks As String, resourceKey As String)
         txtPeriodeAktif.Text = teks
+        txtPeriodeAktifTop.Text = teks
 
         Dim warna As Object = Application.Current.TryFindResource(resourceKey)
         If TypeOf warna Is System.Windows.Media.Brush Then
-            indikatorPeriode.Fill = DirectCast(warna, System.Windows.Media.Brush)
+            Dim brushStatus As System.Windows.Media.Brush = DirectCast(warna, System.Windows.Media.Brush)
+            indikatorPeriode.Fill = brushStatus
+            indikatorPeriodeTop.Fill = brushStatus
         End If
     End Sub
 
@@ -122,10 +132,24 @@ Public Class MainWindow
 
         Select Case UserSession.Role
             Case "admin"
+                colSidebar.Width = New GridLength(256)
+                rowTopbar.Height = New GridLength(0)
+                sidebarPanel.Visibility = Visibility.Visible
+                topbarPanel.Visibility = Visibility.Collapsed
                 panelNavAdmin.Visibility = Visibility.Visible
+
             Case "dosen"
+                colSidebar.Width = New GridLength(0)
+                rowTopbar.Height = New GridLength(58)
+                sidebarPanel.Visibility = Visibility.Collapsed
+                topbarPanel.Visibility = Visibility.Visible
                 panelNavDosen.Visibility = Visibility.Visible
+
             Case "mahasiswa"
+                colSidebar.Width = New GridLength(0)
+                rowTopbar.Height = New GridLength(58)
+                sidebarPanel.Visibility = Visibility.Collapsed
+                topbarPanel.Visibility = Visibility.Visible
                 panelNavMahasiswa.Visibility = Visibility.Visible
         End Select
     End Sub
@@ -145,7 +169,10 @@ Public Class MainWindow
             End If
         Next
 
-        If tombolAktif IsNot Nothing Then
+        If tombolAktif Is btnMenuAkun OrElse tombolAktif Is btnTopMenuAkun Then
+            btnMenuAkun.Tag = "Active"
+            btnTopMenuAkun.Tag = "Active"
+        ElseIf tombolAktif IsNot Nothing Then
             tombolAktif.Tag = "Active"
         End If
     End Sub
@@ -175,7 +202,7 @@ Public Class MainWindow
     End Sub
 
     Private Sub BtnAdminSetup_Click(sender As Object, e As RoutedEventArgs)
-        TampilkanInfoPengembangan("Setup EDOM", "Views/Admin")
+        NavigasiKeHalaman(New AdminSetupView(), "Setup EDOM", "", btnAdminSetup)
     End Sub
 
     Private Sub BtnAdminKelas_Click(sender As Object, e As RoutedEventArgs)

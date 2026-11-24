@@ -1,17 +1,26 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <FontFamily x:Key="DisplayFontFamily">Segoe UI Variable Display, Segoe UI</FontFamily>
+    <FontFamily x:Key="BodyFontFamily">Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="NumericFontFamily">Segoe UI Variable Text, Segoe UI</FontFamily>
+
     <SolidColorBrush x:Key="CanvasBgBrush" Color="#F4F6F8"/>
     <SolidColorBrush x:Key="SurfaceBgBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="SubtleBgBrush" Color="#F8FAFC"/>
     <SolidColorBrush x:Key="HeaderBgBrush" Color="#0F172A"/>
     <SolidColorBrush x:Key="HeaderSubtleBgBrush" Color="#1E293B"/>
     <SolidColorBrush x:Key="HeaderBorderBrush" Color="#334155"/>
+    <SolidColorBrush x:Key="SidebarCardBgBrush" Color="#162234"/>
+    <SolidColorBrush x:Key="SidebarBorderBrush" Color="#233247"/>
+    <SolidColorBrush x:Key="SidebarHoverBgBrush" Color="#1B293E"/>
+    <SolidColorBrush x:Key="SidebarActiveBgBrush" Color="#132E32"/>
 
     <SolidColorBrush x:Key="InkPrimaryBrush" Color="#0F172A"/>
     <SolidColorBrush x:Key="InkSecondaryBrush" Color="#475569"/>
     <SolidColorBrush x:Key="InkOnDarkBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="InkOnDarkMutedBrush" Color="#CBD5E1"/>
+    <SolidColorBrush x:Key="InkOnDarkSecondaryBrush" Color="#94A3B8"/>
 
     <SolidColorBrush x:Key="BorderDefaultBrush" Color="#CBD5E1"/>
     <SolidColorBrush x:Key="BorderLightBrush" Color="#E2E8F0"/>
@@ -20,6 +29,7 @@
     <SolidColorBrush x:Key="AccentHoverBrush" Color="#115E59"/>
     <SolidColorBrush x:Key="AccentPressedBrush" Color="#134E4A"/>
     <SolidColorBrush x:Key="AccentSoftBrush" Color="#F0FDFA"/>
+    <SolidColorBrush x:Key="AccentOnDarkBrush" Color="#14B8A6"/>
 
     <SolidColorBrush x:Key="DangerInkBrush" Color="#B91C1C"/>
     <SolidColorBrush x:Key="DangerBgBrush" Color="#991B1B"/>
@@ -28,11 +38,14 @@
 
     <SolidColorBrush x:Key="StatusOpenBrush" Color="#15803D"/>
     <SolidColorBrush x:Key="StatusClosedBrush" Color="#B91C1C"/>
+    <SolidColorBrush x:Key="StatusOpenOnDarkBrush" Color="#22C55E"/>
+    <SolidColorBrush x:Key="StatusWarningOnDarkBrush" Color="#FBBF24"/>
+    <SolidColorBrush x:Key="StatusClosedOnDarkBrush" Color="#F87171"/>
 
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Padding" Value="16,0"/>
@@ -66,7 +79,7 @@
         <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderDefaultBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Padding" Value="16,0"/>
@@ -93,25 +106,110 @@
     </Style>
 
     <Style x:Key="HeaderLogoutButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource DangerInkBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource DangerInkBrush}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource HeaderSubtleBgBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource InkOnDarkMutedBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SidebarBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="34"/>
         <Setter Property="Height" Value="34"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="BtnBorder" Background="{TemplateBinding Background}" CornerRadius="6">
+                    <Border x:Name="BtnBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="BtnBorder" Property="Background" Value="{StaticResource DangerBgBrush}"/>
+                            <Setter TargetName="BtnBorder" Property="BorderBrush" Value="{StaticResource DangerBgBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="BtnBorder" Property="Background" Value="#7F1D1D"/>
+                            <Setter TargetName="BtnBorder" Property="BorderBrush" Value="#7F1D1D"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SidebarNavButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource InkOnDarkMutedBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="0,2"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="NavBg" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="ActiveMarker" Grid.Column="0" Width="3" Height="18" CornerRadius="1.5" Background="Transparent" Margin="-6,0,8,0" VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="NavBg" Property="Background" Value="{StaticResource SidebarHoverBgBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="Active">
+                            <Setter TargetName="NavBg" Property="Background" Value="{StaticResource SidebarActiveBgBrush}"/>
+                            <Setter TargetName="ActiveMarker" Property="Background" Value="{StaticResource AccentOnDarkBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TopbarNavButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource InkOnDarkMutedBrush}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0,0,0,2.5"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Height" Value="58"/>
+        <Setter Property="Padding" Value="14,0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="TopNavBg"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="TopNavBg" Property="Background" Value="{StaticResource SidebarHoverBgBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="Active">
+                            <Setter TargetName="TopNavBg" Property="Background" Value="{StaticResource SidebarActiveBgBrush}"/>
+                            <Setter TargetName="TopNavBg" Property="BorderBrush" Value="{StaticResource AccentOnDarkBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource InkOnDarkBrush}"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -124,7 +222,7 @@
         <Setter Property="Foreground" Value="{StaticResource DangerInkBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource DangerBorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Padding" Value="14,0"/>
@@ -155,7 +253,7 @@
         <Setter Property="Foreground" Value="{StaticResource InkSecondaryBrush}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0,0,0,2"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Padding" Value="14,0"/>
@@ -186,7 +284,7 @@
     <Style x:Key="LinkButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="12.5"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -224,15 +322,35 @@
     <Style x:Key="CleanDataGridHeaderStyle" TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="{StaticResource SubtleBgBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource InkSecondaryBrush}"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Padding" Value="14,0"/>
+        <Setter Property="Padding" Value="10,0"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderDefaultBrush}"/>
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    </Style>
+
+    <Style x:Key="TabularNumericPrimaryStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource NumericFontFamily}"/>
+        <Setter Property="Typography.NumeralAlignment" Value="Tabular"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
+    </Style>
+
+    <Style x:Key="TabularNumericSecondaryStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource NumericFontFamily}"/>
+        <Setter Property="Typography.NumeralAlignment" Value="Tabular"/>
+        <Setter Property="Foreground" Value="{StaticResource InkSecondaryBrush}"/>
+    </Style>
+
+    <Style x:Key="TabularNumericBoldStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource NumericFontFamily}"/>
+        <Setter Property="Typography.NumeralAlignment" Value="Tabular"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
     </Style>
 
     <Style x:Key="CleanDataGridCellStyle" TargetType="DataGridCell">
@@ -240,7 +358,7 @@
         <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Padding" Value="14,0"/>
+        <Setter Property="Padding" Value="10,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
@@ -294,7 +412,7 @@
         <Setter Property="RowHeight" Value="46"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="SelectionUnit" Value="FullRow"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
         <Setter Property="ColumnHeaderStyle" Value="{StaticResource CleanDataGridHeaderStyle}"/>
@@ -349,7 +467,7 @@
     </Style>
 
     <Style x:Key="CleanComboBoxItemStyle" TargetType="ComboBoxItem">
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
         <Setter Property="Padding" Value="10,7"/>
@@ -380,7 +498,7 @@
 
     <Style x:Key="CleanComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Height" Value="38"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
         <Setter Property="Background" Value="{StaticResource SurfaceBgBrush}"/>
@@ -436,5 +554,86 @@
     </Style>
 
     <Style TargetType="ComboBox" BasedOn="{StaticResource CleanComboBoxStyle}"/>
+
+    <Style x:Key="CleanDatePickerStyle" TargetType="DatePicker">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}"/>
+        <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Padding" Value="12,0,8,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="SelectedDateFormat" Value="Short"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DatePicker">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                        <Grid x:Name="PART_Root"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <DatePickerTextBox x:Name="PART_TextBox"
+                                               Grid.Column="0"
+                                               Background="Transparent"
+                                               BorderThickness="0"
+                                               Padding="0"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               VerticalContentAlignment="Center"
+                                               FocusVisualStyle="{x:Null}"
+                                               Focusable="True"
+                                               HorizontalContentAlignment="Stretch"/>
+
+                            <Button x:Name="PART_Button"
+                                    Grid.Column="1"
+                                    Width="28"
+                                    Height="28"
+                                    Margin="6,0,0,0"
+                                    Focusable="False"
+                                    Cursor="Hand"
+                                    Foreground="{StaticResource InkSecondaryBrush}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border x:Name="BtnBg"
+                                                Background="Transparent"
+                                                CornerRadius="4">
+                                            <Path Width="14"
+                                                  Height="14"
+                                                  Stretch="Uniform"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Fill="{TemplateBinding Foreground}"
+                                                  Data="M 7,2 V 4 H 17 V 2 H 19 V 4 H 20 C 21.1,4 22,4.9 22,6 V 20 C 22,21.1 21.1,22 20,22 H 4 C 2.9,22 2,21.1 2,20 V 6 C 2,4.9 2.9,4 4,4 H 5 V 2 H 7 Z M 4,9 V 20 H 20 V 9 H 4 Z M 6,11 H 11 V 16 H 6 V 11 Z"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BtnBg" Property="Background" Value="#F1F5F9"/>
+                                                <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Popup x:Name="PART_Popup"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   PlacementTarget="{Binding ElementName=PART_TextBox}"
+                                   StaysOpen="False"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -15,7 +15,7 @@ Public Class LoginWindow
         Dim password As String = txtPassword.Password.Trim()
 
         If String.IsNullOrWhiteSpace(username) OrElse String.IsNullOrWhiteSpace(password) Then
-            MessageBox.Show("Isi NIM/NIP dan kata sandi dulu.", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+            MessageBox.Show("Isi NIM, NIP, atau username dan kata sandi terlebih dahulu.", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
             Exit Sub
         End If
 
