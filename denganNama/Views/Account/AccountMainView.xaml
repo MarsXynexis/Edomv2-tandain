@@ -72,7 +72,7 @@
                         <Border BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0,1,0,0" Padding="0,11">
                             <Grid>
                                 <TextBlock x:Name="lblJudulId" Text="NIM / NIP" Foreground="{StaticResource InkSecondaryBrush}" FontSize="13" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="lblUsername" Text="-" Foreground="{StaticResource InkPrimaryBrush}" FontFamily="Consolas" FontWeight="Bold" FontSize="13.5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="lblUsername" Text="-" Foreground="{StaticResource InkPrimaryBrush}" FontWeight="SemiBold" FontSize="13.5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             </Grid>
                         </Border>
 

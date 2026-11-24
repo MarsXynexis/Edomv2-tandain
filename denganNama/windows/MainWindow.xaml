@@ -39,9 +39,19 @@
                     </StackPanel>
 
                     <Button x:Name="btnLogout"
-                            Content="Keluar"
                             Style="{StaticResource HeaderLogoutButtonStyle}"
-                            Click="BtnLogout_Click"/>
+                            ToolTip="Keluar dari akun"
+                            Click="BtnLogout_Click">
+                        <Path Data="M 9,21 H 5 C 3.9,21 3,20.1 3,19 V 5 C 3,3.9 3.9,3 5,3 H 9 M 16,17 L 21,12 L 16,7 M 21,12 H 9"
+                              Stroke="{StaticResource InkOnDarkBrush}"
+                              StrokeThickness="1.9"
+                              StrokeStartLineCap="Round"
+                              StrokeEndLineCap="Round"
+                              StrokeLineJoin="Round"
+                              Width="16"
+                              Height="16"
+                              Stretch="Uniform"/>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
@@ -67,9 +77,8 @@
                     <StackPanel x:Name="panelNavAdmin" Orientation="Horizontal" Visibility="Collapsed">
                         <Button x:Name="btnAdminRekap" Content="Rekapitulasi" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminRekap_Click"/>
                         <Button x:Name="btnAdminSetup" Content="Setup EDOM" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminSetup_Click"/>
-                        <Button x:Name="btnAdminKelas" Content="Daftar Kelas" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminKelas_Click"/>
+                        <Button x:Name="btnAdminKelas" Content="Kelas &amp; Mahasiswa" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminKelas_Click"/>
                         <Button x:Name="btnAdminDosen" Content="Daftar Dosen" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminDosen_Click"/>
-                        <Button x:Name="btnAdminMahasiswa" Content="Daftar Mahasiswa" Style="{StaticResource NavTabButtonStyle}" Click="BtnAdminMahasiswa_Click"/>
                     </StackPanel>
 
                     <Button x:Name="btnMenuAkun" Content="Akun Saya" Style="{StaticResource NavTabButtonStyle}" Click="BtnMenuAkun_Click"/>
@@ -90,11 +99,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Row="0" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,12" Margin="0,0,0,18">
-                        <DockPanel LastChildFill="False">
-                            <TextBlock x:Name="txtJudulHalaman" DockPanel.Dock="Left" Text="Akun Saya" FontSize="17" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="txtSubJudulHalaman" DockPanel.Dock="Right" Text="Informasi profil pengguna" FontSize="12.5" Foreground="{StaticResource InkSecondaryBrush}" VerticalAlignment="Center"/>
-                        </DockPanel>
+                    <Border Grid.Row="0" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,12" Margin="0,0,0,16">
+                        <TextBlock x:Name="txtJudulHalaman" Text="Akun Saya" FontSize="17" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" VerticalAlignment="Center"/>
                     </Border>
 
                     <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
