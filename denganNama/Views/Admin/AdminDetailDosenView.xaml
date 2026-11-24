@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Detail Evaluasi Dosen"
       Background="{StaticResource SurfaceBgBrush}"
-      FontFamily="Segoe UI">
+      FontFamily="{StaticResource BodyFontFamily}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -81,7 +81,7 @@
                 <StackPanel Grid.Column="0" Margin="20,0">
                     <TextBlock Text="Skor Akhir Fuzzy" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                        <TextBlock x:Name="txtSkorAkhir" Text="-" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}"/>
+                        <TextBlock x:Name="txtSkorAkhir" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" FontSize="25" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}"/>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,2,0,0">
                             <Ellipse x:Name="indikatorPredikat" Width="7" Height="7" Fill="{StaticResource InkSecondaryBrush}" Margin="0,0,6,0"/>
                             <TextBlock x:Name="txtPredikatKeseluruhan" Text="Belum dinilai" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkSecondaryBrush}"/>
@@ -93,28 +93,28 @@
 
                 <StackPanel Grid.Column="2" Margin="18,0">
                     <TextBlock Text="Pedagogik" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
-                    <TextBlock x:Name="txtSkorPed" Text="-" FontSize="20" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
+                    <TextBlock x:Name="txtSkorPed" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
                 </StackPanel>
 
                 <Rectangle Grid.Column="3" Fill="{StaticResource BorderLightBrush}"/>
 
                 <StackPanel Grid.Column="4" Margin="18,0">
                     <TextBlock Text="Profesional" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
-                    <TextBlock x:Name="txtSkorProf" Text="-" FontSize="20" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
+                    <TextBlock x:Name="txtSkorProf" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
                 </StackPanel>
 
                 <Rectangle Grid.Column="5" Fill="{StaticResource BorderLightBrush}"/>
 
                 <StackPanel Grid.Column="6" Margin="18,0">
                     <TextBlock Text="Kepribadian" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
-                    <TextBlock x:Name="txtSkorKep" Text="-" FontSize="20" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
+                    <TextBlock x:Name="txtSkorKep" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
                 </StackPanel>
 
                 <Rectangle Grid.Column="7" Fill="{StaticResource BorderLightBrush}"/>
 
                 <StackPanel Grid.Column="8" Margin="18,0">
                     <TextBlock Text="Sosial" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
-                    <TextBlock x:Name="txtSkorSos" Text="-" FontSize="20" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
+                    <TextBlock x:Name="txtSkorSos" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" FontSize="22" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,4,0,0"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -142,7 +142,7 @@
                 <DataGrid x:Name="dgKelasDosen"
                           Style="{StaticResource CleanDataGridStyle}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mata Kuliah" Binding="{Binding matkul_label}" Width="2*">
+                        <DataGridTextColumn Header="Mata Kuliah" Binding="{Binding matkul_label}" Width="*" MinWidth="220">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -152,7 +152,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Kelas" Binding="{Binding kelas_label}" Width="0.85*">
+                        <DataGridTextColumn Header="Kelas" Binding="{Binding kelas_label}" Width="96">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -161,25 +161,18 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="SKS" Binding="{Binding sks}" Width="55"/>
+                        <DataGridTextColumn Header="SKS" Binding="{Binding sks}" Width="48" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
 
-                        <DataGridTextColumn Header="Responden" Binding="{Binding responden_label}" Width="0.9*"/>
+                        <DataGridTextColumn Header="Responden" Binding="{Binding responden_label}" Width="106"/>
 
-                        <DataGridTextColumn Header="Ped." Binding="{Binding ped}" Width="65"/>
-                        <DataGridTextColumn Header="Prof." Binding="{Binding prof}" Width="65"/>
-                        <DataGridTextColumn Header="Kep." Binding="{Binding kep}" Width="65"/>
-                        <DataGridTextColumn Header="Sos." Binding="{Binding sos}" Width="65"/>
+                        <DataGridTextColumn Header="Ped." Binding="{Binding ped}" Width="58" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
+                        <DataGridTextColumn Header="Prof." Binding="{Binding prof}" Width="58" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
+                        <DataGridTextColumn Header="Kep." Binding="{Binding kep}" Width="58" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
+                        <DataGridTextColumn Header="Sos." Binding="{Binding sos}" Width="58" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
 
-                        <DataGridTextColumn Header="Skor" Binding="{Binding skor_akhir}" Width="75">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Skor" Binding="{Binding skor_akhir}" Width="64" ElementStyle="{StaticResource TabularNumericBoldStyle}"/>
 
-                        <DataGridTemplateColumn Header="Predikat" Width="135">
+                        <DataGridTemplateColumn Header="Predikat" Width="126">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

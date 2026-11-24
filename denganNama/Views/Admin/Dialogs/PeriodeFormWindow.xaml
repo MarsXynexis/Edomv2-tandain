@@ -1,0 +1,122 @@
+<Window x:Class="PeriodeFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Data Periode EDOM"
+        SizeToContent="Height"
+        Width="460"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource SurfaceBgBrush}"
+        FontFamily="{StaticResource BodyFontFamily}">
+
+    <Grid Margin="24,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock x:Name="txtJudulForm"
+                       Text="Tambah Periode EDOM"
+                       FontFamily="{StaticResource DisplayFontFamily}"
+                       FontSize="19"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource InkPrimaryBrush}"/>
+            <TextBlock x:Name="txtSubjudulForm"
+                       Text="Tentukan tahun ajaran, semester, dan rentang jadwal pengisian."
+                       FontSize="12.5"
+                       Foreground="{StaticResource InkSecondaryBrush}"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Grid Margin="0,0,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Tahun Awal Ajaran" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <Border Style="{StaticResource InputFrameBorderStyle}">
+                        <TextBox x:Name="txtTahunMulai"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 VerticalContentAlignment="Center"
+                                 Padding="12,0"
+                                 FontSize="13"
+                                 MaxLength="4"
+                                 Foreground="{StaticResource InkPrimaryBrush}"
+                                 TabIndex="0"
+                                 TextChanged="txtTahunMulai_TextChanged"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Semester" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <ComboBox x:Name="cmbSemester"
+                              Style="{StaticResource CleanComboBoxStyle}"
+                              Height="40"
+                              TabIndex="1"
+                              SelectionChanged="cmbSemester_SelectionChanged">
+                        <ComboBoxItem Content="Ganjil" Tag="Ganjil"/>
+                        <ComboBoxItem Content="Genap" Tag="Genap"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock x:Name="txtPratinjauPeriode"
+                       Text="Periode: -"
+                       FontSize="12"
+                       Foreground="{StaticResource InkSecondaryBrush}"
+                       Margin="0,0,0,14"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Tanggal Mulai" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <Border Style="{StaticResource InputFrameBorderStyle}">
+                        <DatePicker x:Name="dpMulai"
+                                    Style="{StaticResource CleanDatePickerStyle}"
+                                    TabIndex="2"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Tanggal Selesai" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+                    <Border Style="{StaticResource InputFrameBorderStyle}">
+                        <DatePicker x:Name="dpSelesai"
+                                    Style="{StaticResource CleanDatePickerStyle}"
+                                    TabIndex="3"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,22,0,0">
+            <Button x:Name="btnBatal"
+                    Content="Batal"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    MinWidth="90"
+                    IsCancel="True"
+                    TabIndex="5"
+                    Click="btnBatal_Click"/>
+
+            <Button x:Name="btnSimpan"
+                    Content="Simpan"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    MinWidth="105"
+                    Margin="10,0,0,0"
+                    IsDefault="True"
+                    TabIndex="4"
+                    Click="btnSimpan_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="{StaticResource SurfaceBgBrush}"
-        FontFamily="Segoe UI">
+        FontFamily="{StaticResource BodyFontFamily}">
 
     <Grid Margin="24,22">
         <Grid.RowDefinitions>
@@ -19,6 +19,7 @@
         <StackPanel Grid.Row="0" Margin="0,0,0,18">
             <TextBlock x:Name="txtJudulForm"
                        Text="Tambah Akun"
+                       FontFamily="{StaticResource DisplayFontFamily}"
                        FontSize="19"
                        FontWeight="Bold"
                        Foreground="{StaticResource InkPrimaryBrush}"/>

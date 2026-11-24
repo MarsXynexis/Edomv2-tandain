@@ -3,22 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Kelas dan Mahasiswa"
       Background="{StaticResource SurfaceBgBrush}"
-      FontFamily="Segoe UI">
+      FontFamily="{StaticResource BodyFontFamily}">
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,16">
+        <Grid Grid.Row="0" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="165"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="115"/>
                 <ColumnDefinition Width="12"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -41,7 +38,7 @@
 
                     <Grid Grid.Column="1">
                         <TextBlock x:Name="lblPlaceholderCari"
-                                   Text="Cari program studi atau rombel..."
+                                   Text="Cari program studi, tahun masuk, atau rombel..."
                                    Foreground="{StaticResource InkSecondaryBrush}"
                                    FontSize="13"
                                    VerticalAlignment="Center"
@@ -60,22 +57,7 @@
                 </Grid>
             </Border>
 
-            <ComboBox x:Name="cmbFilterAngkatan"
-                      Grid.Column="2"
-                      Style="{StaticResource CleanComboBoxStyle}"
-                      DisplayMemberPath="Teks"
-                      SelectionChanged="cmbFilterAngkatan_SelectionChanged"/>
-
-            <ComboBox x:Name="cmbFilterStatus"
-                      Grid.Column="4"
-                      Style="{StaticResource CleanComboBoxStyle}"
-                      SelectionChanged="cmbFilterStatus_SelectionChanged">
-                <ComboBoxItem Content="Aktif" Tag="Aktif" IsSelected="True"/>
-                <ComboBoxItem Content="Nonaktif" Tag="Nonaktif"/>
-                <ComboBoxItem Content="Semua" Tag=""/>
-            </ComboBox>
-
-            <StackPanel Grid.Column="6" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="btnTambah"
                         Content="Tambah Kelas"
                         Style="{StaticResource PrimaryButtonStyle}"
@@ -101,7 +83,36 @@
             </StackPanel>
         </Grid>
 
-        <Border Grid.Row="1"
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12">
+            <ComboBox x:Name="cmbFilterProdi"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      MinWidth="245"
+                      MaxWidth="340"
+                      Height="36"
+                      DisplayMemberPath="Teks"
+                      SelectionChanged="cmbFilterProdi_SelectionChanged"/>
+
+            <ComboBox x:Name="cmbFilterAngkatan"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      Width="168"
+                      Height="36"
+                      Margin="8,0,0,0"
+                      DisplayMemberPath="Teks"
+                      SelectionChanged="cmbFilterAngkatan_SelectionChanged"/>
+
+            <ComboBox x:Name="cmbFilterStatus"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      Width="118"
+                      Height="36"
+                      Margin="8,0,0,0"
+                      SelectionChanged="cmbFilterStatus_SelectionChanged">
+                <ComboBoxItem Content="Aktif" Tag="Aktif" IsSelected="True"/>
+                <ComboBoxItem Content="Nonaktif" Tag="Nonaktif"/>
+                <ComboBoxItem Content="Semua" Tag=""/>
+            </ComboBox>
+        </StackPanel>
+
+        <Border Grid.Row="2"
                 Background="{StaticResource SurfaceBgBrush}"
                 BorderBrush="{StaticResource BorderDefaultBrush}"
                 BorderThickness="1"
@@ -119,13 +130,54 @@
                                     <Border Background="#F1F5F9"
                                             BorderBrush="{StaticResource BorderLightBrush}"
                                             BorderThickness="0,1,0,1"
-                                            Padding="14,8">
+                                            Padding="14,9">
                                         <DockPanel LastChildFill="False">
                                             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <Border Width="3" Height="14" Background="{StaticResource AccentBrush}" CornerRadius="1.5" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{Binding Name}" FontSize="13" FontWeight="Bold" Foreground="{StaticResource InkPrimaryBrush}" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="{StaticResource DisplayFontFamily}"
+                                                           FontSize="13"
+                                                           FontWeight="Bold"
+                                                           Foreground="{StaticResource InkPrimaryBrush}"
+                                                           VerticalAlignment="Center"/>
                                             </StackPanel>
-                                            <TextBlock DockPanel.Dock="Right" Text="{Binding ItemCount, StringFormat={}{0} kelas}" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource InkSecondaryBrush}" VerticalAlignment="Center"/>
+                                            <TextBlock DockPanel.Dock="Right"
+                                                       Text="{Binding ItemCount, StringFormat={}{0} kelas}"
+                                                       FontFamily="{StaticResource NumericFontFamily}"
+                                                       Typography.NumeralAlignment="Tabular"
+                                                       FontSize="12"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="{StaticResource InkSecondaryBrush}"
+                                                       VerticalAlignment="Center"/>
+                                        </DockPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Background="{StaticResource SubtleBgBrush}"
+                                            BorderBrush="{StaticResource BorderLightBrush}"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="28,7,14,7">
+                                        <DockPanel LastChildFill="False">
+                                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <Ellipse Width="5" Height="5" Fill="{StaticResource AccentBrush}" Margin="0,0,9,0"/>
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontSize="12.5"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{StaticResource InkPrimaryBrush}"
+                                                           VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                            <TextBlock DockPanel.Dock="Right"
+                                                       Text="{Binding ItemCount, StringFormat={}{0} kelas}"
+                                                       FontFamily="{StaticResource NumericFontFamily}"
+                                                       Typography.NumeralAlignment="Tabular"
+                                                       FontSize="11.5"
+                                                       Foreground="{StaticResource InkSecondaryBrush}"
+                                                       VerticalAlignment="Center"/>
                                         </DockPanel>
                                     </Border>
                                 </DataTemplate>
@@ -134,40 +186,20 @@
                     </DataGrid.GroupStyle>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Program Studi" Binding="{Binding prodi}" Width="2.5*">
+                        <DataGridTextColumn Header="Kelas" Binding="{Binding rombel_label}" Width="1.2*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
-                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Rombel" Binding="{Binding rombel}" Width="0.8*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="{StaticResource NumericFontFamily}"/>
                                     <Setter Property="FontWeight" Value="Bold"/>
                                     <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                    <Setter Property="Margin" Value="24,0,0,0"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Mahasiswa" Binding="{Binding total_mhs_label}" Width="1*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="{StaticResource InkSecondaryBrush}"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Mahasiswa" Binding="{Binding total_mhs_label}" Width="1.2*" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
 
-                        <DataGridTextColumn Header="Pengampu" Binding="{Binding total_pengampu_label}" Width="1*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="{StaticResource InkSecondaryBrush}"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Pengampu" Binding="{Binding total_pengampu_label}" Width="1.3*" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
 
                         <DataGridTemplateColumn Header="Status" Width="115">
                             <DataGridTemplateColumn.CellTemplate>
@@ -192,7 +224,7 @@
             </Grid>
         </Border>
 
-        <DockPanel Grid.Row="2" LastChildFill="False" Margin="2,10,0,0">
+        <DockPanel Grid.Row="3" LastChildFill="False" Margin="2,10,0,0">
             <TextBlock x:Name="txtJumlahKelas" DockPanel.Dock="Left" Text="" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
             <TextBlock DockPanel.Dock="Right" Text="Klik dua kali baris kelas untuk kelola anggota mahasiswa &amp; dosen pengampu" FontSize="12" Foreground="{StaticResource InkSecondaryBrush}"/>
         </DockPanel>

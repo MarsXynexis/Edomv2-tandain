@@ -297,7 +297,7 @@ Public Class AdminDetailDosenView
                     itemB.MatkulLabel,
                     itemB.KelasLabel,
                     itemB.Sks,
-                    itemB.Responden.ToString() & " mhs",
+                    itemB.Responden.ToString() & " Mahasiswa",
                     h.Pedagogik.ToString("0.00", CultureInfo.InvariantCulture),
                     h.Profesional.ToString("0.00", CultureInfo.InvariantCulture),
                     h.Kepribadian.ToString("0.00", CultureInfo.InvariantCulture),
@@ -311,7 +311,7 @@ Public Class AdminDetailDosenView
                     itemB.MatkulLabel,
                     itemB.KelasLabel,
                     itemB.Sks,
-                    itemB.Responden.ToString() & " mhs",
+                    itemB.Responden.ToString() & " Mahasiswa",
                     "-", "-", "-", "-", "-",
                     "Belum dinilai",
                     "#64748B"

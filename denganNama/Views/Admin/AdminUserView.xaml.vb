@@ -72,7 +72,7 @@ Public Class AdminUserView
                             Dim pengampuTeks As String = "-"
 
                             If roleKode = "dosen" Then
-                                pengampuTeks = If(jmlPengampu > 0, jmlPengampu.ToString() & " kelas · matkul", "Belum ditugaskan")
+                                pengampuTeks = If(jmlPengampu > 0, jmlPengampu.ToString() & " Penugasan", "Belum ditugaskan")
                             End If
 
                             dtUser.Rows.Add(
