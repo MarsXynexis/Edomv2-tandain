@@ -6,8 +6,64 @@
       xmlns:local="clr-namespace:denganNama"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MhsQuestionView">
-    <Grid>
-        
-    </Grid>
+      Title="MhsQuestionView"
+      Background="white">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="Kuesioner Mahasiswa Untuk Dosen"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#0F172A"
+                   Margin="0, 0, 0, 8"/>
+
+            <TextBlock Text="Silahkan mengisi kuesioner sesuai dengan kejujuran dan hati nurani anda"
+                   FontSize="13"
+                   Foreground="#64748B"
+                   Margin="0, 0, 0, 25"/>
+
+            <Border Background="#F8FAFC"
+                CornerRadius="12"
+                Padding="22">
+            </Border>
+
+            <StackPanel
+    Orientation="Horizontal"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+
+            <TextBlock Text="1. Bagaimana pendapat Anda tentang kualitas pengajaran di kelas ini?"
+           FontSize="13"
+           Foreground="#64748B"
+           Margin="0, 0, 0, 25" Width="770"/>
+
+            <RadioButton
+    Content="Sangat Baik"
+    GroupName="Penilaian"
+    Margin="10"
+    FontSize="14"/>
+
+            <RadioButton
+    Content="Baik"
+    GroupName="Penilaian"
+    Margin="10"
+    FontSize="14"/>
+
+            <RadioButton
+    Content="Cukup"
+    GroupName="Penilaian"
+    Margin="10"
+    FontSize="14"/>
+
+            <RadioButton
+    Content="Kurang"
+    GroupName="Penilaian"
+    Margin="10"
+    FontSize="14"/>
+
+        </StackPanel>
+
+        </StackPanel>
+
+    </ScrollViewer>
 </Page>

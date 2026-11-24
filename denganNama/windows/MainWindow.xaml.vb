@@ -182,11 +182,13 @@ Public Class MainWindow
     End Sub
 
     Private Sub BtnMhsDashboard_Click(sender As Object, e As RoutedEventArgs)
-        TampilkanInfoPengembangan("Daftar Mata Kuliah", "Views/Mhs")
+        NavigasiKeHalaman(New MhsMainView(), "Dashboard Mahasiswa", "Pengelolaan data kelas jurusan", btnMhsDashboard)
+        'TampilkanInfoPengembangan("Daftar Mata Kuliah", "Views/Mhs")
     End Sub
 
     Private Sub BtnMhsQuestion_Click(sender As Object, e As RoutedEventArgs)
-        TampilkanInfoPengembangan("Kuesioner", "Views/Mhs")
+        NavigasiKeHalaman(New MhsQuestionView(), "Kuesioner Mahasiswa", "Kuesioner Mahasiswa Evaluasi Dosen Mengajar", btnMhsQuestion)
+        'TampilkanInfoPengembangan("Kuesioner", "Views/Mhs")
     End Sub
 
     Private Sub BtnDosenMain_Click(sender As Object, e As RoutedEventArgs)
