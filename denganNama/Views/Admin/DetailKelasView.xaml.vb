@@ -150,7 +150,7 @@ Public Class DetailKelasView
 
                 Dim query As String = "SELECT id, username, nama, aktif FROM users " &
                                       "WHERE role = 'mahasiswa' AND id_kelas = @idKelas " &
-                                      "ORDER BY aktif DESC, username ASC"
+                                      "ORDER BY aktif DESC, nama ASC"
 
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@idKelas", idKelasTarget)

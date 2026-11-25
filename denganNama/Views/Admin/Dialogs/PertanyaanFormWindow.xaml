@@ -1,0 +1,81 @@
+<Window x:Class="PertanyaanFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Butir Pertanyaan EDOM"
+        SizeToContent="Height"
+        Width="480"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource SurfaceBgBrush}"
+        FontFamily="{StaticResource BodyFontFamily}">
+
+    <Grid Margin="24,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock x:Name="txtJudulForm"
+                       Text="Tambah Pertanyaan EDOM"
+                       FontFamily="{StaticResource DisplayFontFamily}"
+                       FontSize="19"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource InkPrimaryBrush}"/>
+            <TextBlock x:Name="txtSubjudulForm"
+                       Text="Pilih aspek kompetensi dan tuliskan butir pernyataan kuesioner."
+                       FontSize="12.5"
+                       Foreground="{StaticResource InkSecondaryBrush}"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Aspek Kompetensi" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+            <ComboBox x:Name="cmbKategori"
+                      Style="{StaticResource CleanComboBoxStyle}"
+                      Height="40"
+                      Margin="0,0,0,14"
+                      TabIndex="0">
+                <ComboBoxItem Content="Kompetensi Pedagogik" Tag="pedagogik"/>
+                <ComboBoxItem Content="Kompetensi Profesional" Tag="profesional"/>
+                <ComboBoxItem Content="Kompetensi Kepribadian" Tag="kepribadian"/>
+                <ComboBoxItem Content="Kompetensi Sosial" Tag="sosial"/>
+            </ComboBox>
+
+            <TextBlock Text="Butir Pertanyaan" FontSize="12.5" FontWeight="SemiBold" Foreground="{StaticResource InkPrimaryBrush}" Margin="0,0,0,6"/>
+            <Border Style="{StaticResource InputFrameBorderStyle}" Height="120">
+                <TextBox x:Name="txtPertanyaan"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         Padding="12,10"
+                         FontSize="13"
+                         Foreground="{StaticResource InkPrimaryBrush}"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="False"
+                         VerticalScrollBarVisibility="Auto"
+                         VerticalContentAlignment="Top"
+                         TabIndex="1"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,22,0,0">
+            <Button x:Name="btnBatal"
+                    Content="Batal"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    MinWidth="90"
+                    IsCancel="True"
+                    TabIndex="3"
+                    Click="btnBatal_Click"/>
+
+            <Button x:Name="btnSimpan"
+                    Content="Simpan"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    MinWidth="105"
+                    Margin="10,0,0,0"
+                    IsDefault="True"
+                    TabIndex="2"
+                    Click="btnSimpan_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
