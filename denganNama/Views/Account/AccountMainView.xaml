@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Akun Saya"
       Background="{StaticResource SurfaceBgBrush}"
-      FontFamily="Segoe UI">
+      FontFamily="{StaticResource BodyFontFamily}">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Stretch">
@@ -27,7 +27,8 @@
                             VerticalAlignment="Center">
                         <TextBlock x:Name="lblInisial"
                                    Text="-"
-                                   FontSize="18"
+                                   FontFamily="{StaticResource NumericFontFamily}"
+                                   FontSize="19"
                                    FontWeight="Bold"
                                    Foreground="{StaticResource InkOnDarkBrush}"
                                    HorizontalAlignment="Center"
@@ -37,7 +38,8 @@
                     <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="16,0,0,0">
                         <TextBlock x:Name="lblNama"
                                    Text="-"
-                                   FontSize="18"
+                                   FontFamily="{StaticResource DisplayFontFamily}"
+                                   FontSize="19"
                                    FontWeight="Bold"
                                    Foreground="{StaticResource InkPrimaryBrush}"/>
                         <TextBlock x:Name="lblSubIdentitas"
@@ -72,7 +74,7 @@
                         <Border BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0,1,0,0" Padding="0,11">
                             <Grid>
                                 <TextBlock x:Name="lblJudulId" Text="NIM / NIP" Foreground="{StaticResource InkSecondaryBrush}" FontSize="13" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="lblUsername" Text="-" Foreground="{StaticResource InkPrimaryBrush}" FontWeight="SemiBold" FontSize="13.5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="lblUsername" Text="-" FontFamily="{StaticResource NumericFontFamily}" Typography.NumeralAlignment="Tabular" Foreground="{StaticResource InkPrimaryBrush}" FontWeight="SemiBold" FontSize="13.5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                             </Grid>
                         </Border>
 

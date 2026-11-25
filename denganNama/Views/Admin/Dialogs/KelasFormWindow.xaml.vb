@@ -1,4 +1,6 @@
-﻿Public Class KelasFormWindow
+﻿Imports System.Windows.Input
+
+Public Class KelasFormWindow
 
     Public Property Prodi As String
 
@@ -9,12 +11,22 @@
     Public Property Aktif As Boolean = True
 
     Private Sub KelasFormWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        If String.IsNullOrWhiteSpace(txtProdi.Text) Then
-            txtProdi.Text = "Sarjana Terapan Teknik Informatika"
-            txtProdi.SelectAll()
+        PerbaruiPlaceholderProdi()
+        txtProdi.Focus()
+    End Sub
+
+    Public Sub SetDaftarProdi(daftar As IEnumerable(Of String))
+        lstProdiMaster.Items.Clear()
+
+        If daftar IsNot Nothing Then
+            For Each item As String In daftar
+                If Not String.IsNullOrWhiteSpace(item) Then
+                    lstProdiMaster.Items.Add(item.Trim())
+                End If
+            Next
         End If
 
-        txtProdi.Focus()
+        btnPilihProdi.Visibility = If(lstProdiMaster.Items.Count > 0, Visibility.Visible, Visibility.Collapsed)
     End Sub
 
     Public Sub SetData(prodiAwal As String, angkatanAwal As String, rombelAwal As String, aktifAwal As Boolean)
@@ -23,6 +35,33 @@
         txtAngkatan.Text = angkatanAwal
         txtRombel.Text = rombelAwal
         chkAktif.IsChecked = aktifAwal
+        PerbaruiPlaceholderProdi()
+    End Sub
+
+    Private Sub txtProdi_TextChanged(sender As Object, e As TextChangedEventArgs)
+        PerbaruiPlaceholderProdi()
+    End Sub
+
+    Private Sub PerbaruiPlaceholderProdi()
+        If lblPlaceholderProdi Is Nothing OrElse txtProdi Is Nothing Then Exit Sub
+        lblPlaceholderProdi.Visibility = If(String.IsNullOrEmpty(txtProdi.Text), Visibility.Visible, Visibility.Collapsed)
+    End Sub
+
+    Private Sub lstProdiMaster_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+        If lstProdiMaster.SelectedItem Is Nothing Then Exit Sub
+
+        txtProdi.Text = lstProdiMaster.SelectedItem.ToString()
+        lstProdiMaster.SelectedIndex = -1
+        btnPilihProdi.IsChecked = False
+        txtProdi.Focus()
+        txtProdi.CaretIndex = txtProdi.Text.Length
+    End Sub
+
+    Private Sub btnPilihProdi_PreviewMouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs)
+        If btnPilihProdi.IsChecked = True Then
+            btnPilihProdi.IsChecked = False
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub btnBatal_Click(sender As Object, e As RoutedEventArgs)

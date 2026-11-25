@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Daftar Dosen"
       Background="{StaticResource SurfaceBgBrush}"
-      FontFamily="Segoe UI">
+      FontFamily="{StaticResource BodyFontFamily}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -110,16 +110,9 @@
                           Style="{StaticResource CleanDataGridStyle}"
                           MouseDoubleClick="dgUser_MouseDoubleClick">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="NIP / Username" Binding="{Binding username}" Width="1.35*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="NIP / Username" Binding="{Binding username}" Width="172" ElementStyle="{StaticResource TabularNumericPrimaryStyle}"/>
 
-                        <DataGridTextColumn Header="Nama Lengkap" Binding="{Binding nama}" Width="2.1*">
+                        <DataGridTextColumn Header="Nama Lengkap" Binding="{Binding nama}" Width="2*">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="FontWeight" Value="SemiBold"/>

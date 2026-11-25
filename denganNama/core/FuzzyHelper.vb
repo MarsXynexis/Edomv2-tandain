@@ -131,7 +131,7 @@ Public Module FuzzyHelper
                 psi.RedirectStandardInput = True
                 psi.RedirectStandardOutput = True
                 psi.RedirectStandardError = True
-                psi.StandardInputEncoding = Encoding.UTF8
+                psi.StandardInputEncoding = New UTF8Encoding(False)
                 psi.StandardOutputEncoding = Encoding.UTF8
                 psi.StandardErrorEncoding = Encoding.UTF8
 
@@ -152,7 +152,9 @@ Public Module FuzzyHelper
                     pesanTerakhir = If(Not String.IsNullOrWhiteSpace(errorTeks), errorTeks.Trim(), "Kode keluar: " & proses.ExitCode.ToString())
                 End Using
             Catch ex As Win32Exception
-                pesanTerakhir = ex.Message
+                If String.IsNullOrEmpty(pesanTerakhir) Then
+                    pesanTerakhir = ex.Message
+                End If
             End Try
         Next
 

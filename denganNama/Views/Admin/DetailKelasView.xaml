@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Detail Kelas"
       Background="{StaticResource SurfaceBgBrush}"
-      FontFamily="Segoe UI">
+      FontFamily="{StaticResource BodyFontFamily}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -158,14 +158,7 @@
                 <Grid>
                     <DataGrid x:Name="dgMahasiswaKelas" Style="{StaticResource CleanDataGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="NIM" Binding="{Binding username}" Width="1.2*">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="FontWeight" Value="SemiBold"/>
-                                        <Setter Property="Foreground" Value="{StaticResource InkPrimaryBrush}"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="NIM" Binding="{Binding username}" Width="1.2*" ElementStyle="{StaticResource TabularNumericPrimaryStyle}"/>
 
                             <DataGridTextColumn Header="Nama Lengkap" Binding="{Binding nama}" Width="2.4*">
                                 <DataGridTextColumn.ElementStyle>
@@ -243,7 +236,7 @@
 
                     <Button x:Name="btnTambahMatkul"
                             Grid.Column="1"
-                            Content="+ Matkul"
+                            Content="+ Mata Kuliah"
                             Style="{StaticResource SecondaryButtonStyle}"
                             VerticalAlignment="Bottom"
                             Margin="6,0,0,0"
@@ -303,6 +296,7 @@
                             <DataGridTextColumn Header="Kode" Binding="{Binding kode_matkul}" Width="90">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="{StaticResource NumericFontFamily}"/>
                                         <Setter Property="FontWeight" Value="SemiBold"/>
                                         <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
                                     </Style>
@@ -318,7 +312,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="SKS" Binding="{Binding sks}" Width="60"/>
+                            <DataGridTextColumn Header="SKS" Binding="{Binding sks}" Width="60" ElementStyle="{StaticResource TabularNumericSecondaryStyle}"/>
 
                             <DataGridTextColumn Header="Dosen Pengampu" Binding="{Binding nama_dosen}" Width="1.8*"/>
 
