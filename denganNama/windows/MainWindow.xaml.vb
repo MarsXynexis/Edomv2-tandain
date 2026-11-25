@@ -12,9 +12,7 @@ Public Class MainWindow
 
         semuaTombolNav = {
             btnMhsDashboard,
-            btnMhsQuestion,
             btnDosenMain,
-            btnDosenDetail,
             btnAdminRekap,
             btnAdminSetup,
             btnAdminKelas,
@@ -186,18 +184,11 @@ Public Class MainWindow
         'TampilkanInfoPengembangan("Daftar Mata Kuliah", "Views/Mhs")
     End Sub
 
-    Private Sub BtnMhsQuestion_Click(sender As Object, e As RoutedEventArgs)
-        NavigasiKeHalaman(New MhsQuestionView(), "Kuesioner Mahasiswa", "Kuesioner Mahasiswa Evaluasi Dosen Mengajar", btnMhsQuestion)
-        'TampilkanInfoPengembangan("Kuesioner", "Views/Mhs")
-    End Sub
 
     Private Sub BtnDosenMain_Click(sender As Object, e As RoutedEventArgs)
         NavigasiKeHalaman(New DosenMainView(), "Capaian Evaluasi", "Ringkasan hasil evaluasi dosen", btnDosenMain)
     End Sub
 
-    Private Sub BtnDosenDetail_Click(sender As Object, e As RoutedEventArgs)
-        TampilkanInfoPengembangan("Rincian Kelas", "Views/Dosen")
-    End Sub
 
     Private Sub BtnAdminRekap_Click(sender As Object, e As RoutedEventArgs)
         NavigasiKeHalaman(New AdminDashboardView(), "Rekapitulasi", "Evaluasi seluruh dosen dan perhitungan Fuzzy Sugeno", btnAdminRekap)

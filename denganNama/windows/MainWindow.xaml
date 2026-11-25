@@ -51,12 +51,10 @@
 
                     <StackPanel x:Name="panelNavMahasiswa" Orientation="Horizontal" Visibility="Collapsed">
                         <Button x:Name="btnMhsDashboard" Content="Daftar Mata Kuliah" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMhsDashboard_Click"/>
-                        <Button x:Name="btnMhsQuestion" Content="Kuesioner" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMhsQuestion_Click"/>
                     </StackPanel>
 
                     <StackPanel x:Name="panelNavDosen" Orientation="Horizontal" Visibility="Collapsed">
                         <Button x:Name="btnDosenMain" Content="Capaian Evaluasi" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnDosenMain_Click"/>
-                        <Button x:Name="btnDosenDetail" Content="Rincian Kelas" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnDosenDetail_Click"/>
                     </StackPanel>
 
                     <Button x:Name="btnTopMenuAkun" Content="Akun Saya" Style="{StaticResource TopbarNavButtonStyle}" Click="BtnMenuAkun_Click"/>
