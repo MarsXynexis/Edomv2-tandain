@@ -1,13 +1,166 @@
 ﻿<Page x:Class="DosenMainView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:denganNama"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="DosenMainView">
+      Title="Capaian Evaluasi"
+      Background="{StaticResource SurfaceBgBrush}"
+      FontFamily="Segoe UI">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Background="{StaticResource SubtleBgBrush}"
+                BorderBrush="{StaticResource BorderDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16,12"
+                Margin="0,0,0,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="190"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Periode Semester:" VerticalAlignment="Center" Margin="0,0,12,0" Foreground="{StaticResource InkPrimaryBrush}"/>
+                <ComboBox x:Name="cmbPeriodeSemester" Grid.Column="1" Style="{StaticResource CleanComboBoxStyle}" SelectionChanged="cmbPeriodeSemester_SelectionChanged"/>
+
+                <TextBlock Grid.Column="2" Text="Kelas:" VerticalAlignment="Center" Margin="22,0,12,0" Foreground="{StaticResource InkPrimaryBrush}"/>
+                <ComboBox x:Name="cmbKelas" Grid.Column="3" Style="{StaticResource CleanComboBoxStyle}"/>
+
+                <Button x:Name="btnTampilkan"
+                        Grid.Column="4"
+                        Content="Tampilkan"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Margin="16,0,0,0"
+                        Click="btnTampilkan_Click"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="0,0,0,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.55*"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0"
+                      Header="Capaian 4 Pilar Kompetensi (Skala 0 - 100)"
+                      Foreground="{StaticResource InkPrimaryBrush}"
+                      FontWeight="SemiBold"
+                      BorderBrush="{StaticResource BorderDefaultBrush}"
+                      BorderThickness="1"
+                      Padding="10,8,10,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="{StaticResource SubtleBgBrush}" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="1" CornerRadius="6" Padding="8">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Kompetensi Pedagogik" TextAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="txtSkorPedagogik" Text="0.00" TextAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontSize="23" FontWeight="Bold" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2" Background="{StaticResource SubtleBgBrush}" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="1" CornerRadius="6" Padding="8">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Kompetensi Profesional" TextAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="txtSkorProfesional" Text="0.00" TextAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontSize="23" FontWeight="Bold" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="4" Background="{StaticResource SubtleBgBrush}" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="1" CornerRadius="6" Padding="8">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Kompetensi Kepribadian" TextAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="txtSkorKepribadian" Text="0.00" TextAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontSize="23" FontWeight="Bold" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="6" Background="{StaticResource SubtleBgBrush}" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="1" CornerRadius="6" Padding="8">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Kompetensi Sosial" TextAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="txtSkorSosial" Text="0.00" TextAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontSize="23" FontWeight="Bold" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="2"
+                      Header="Hasil Evaluasi"
+                      Foreground="{StaticResource InkPrimaryBrush}"
+                      FontWeight="SemiBold"
+                      BorderBrush="{StaticResource BorderDefaultBrush}"
+                      BorderThickness="1"
+                      Padding="12,8,12,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Skor Akhir:" VerticalAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" Margin="0,0,8,0"/>
+                        <TextBlock x:Name="txtSkorAkhir" Grid.Column="1" Text="00.00" VerticalAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Grid.Column="2" Text="Predikat:" VerticalAlignment="Center" Foreground="{StaticResource InkSecondaryBrush}" Margin="14,0,8,0"/>
+                        <TextBlock x:Name="txtPredikat" Grid.Column="3" Text="-" VerticalAlignment="Center" Foreground="{StaticResource InkPrimaryBrush}" FontWeight="SemiBold"/>
+                    </Grid>
+                    <TextBlock Grid.Row="1" Text="Rekomendasi" Foreground="{StaticResource InkSecondaryBrush}" FontSize="12" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtRekomendasi"
+                             Grid.Row="2"
+                             IsReadOnly="True"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             Padding="8"
+                             Background="{StaticResource SurfaceBgBrush}"
+                             BorderBrush="{StaticResource BorderDefaultBrush}"
+                             Foreground="{StaticResource InkPrimaryBrush}"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <GroupBox Grid.Row="2"
+                  Header="Rincian Evaluasi per Mata Kuliah dan Kelas"
+                  Foreground="{StaticResource InkPrimaryBrush}"
+                  FontWeight="SemiBold"
+                  BorderBrush="{StaticResource BorderDefaultBrush}"
+                  BorderThickness="1"
+                  Padding="6,6,6,8">
+            <DataGrid x:Name="dgRincianEvaluasi"
+                      Style="{StaticResource CleanDataGridStyle}"
+                      RowHeight="36"
+                      MinColumnWidth="60">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="No" Binding="{Binding No}" Width="42"/>
+                    <DataGridTextColumn Header="Mata Kuliah" Binding="{Binding MataKuliah}" Width="2*"/>
+                    <DataGridTextColumn Header="Kelas" Binding="{Binding Kelas}" Width="0.8*"/>
+                    <DataGridTextColumn Header="SKS" Binding="{Binding SKS}" Width="55"/>
+                    <DataGridTextColumn Header="Pedagogik" Binding="{Binding Pedagogik}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Profesional" Binding="{Binding Profesional}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Kepribadian" Binding="{Binding Kepribadian}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Sosial" Binding="{Binding Sosial}" Width="0.8*"/>
+                    <DataGridTextColumn Header="Skor Akhir" Binding="{Binding SkorAkhir}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Predikat" Binding="{Binding Predikat}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Rekomendasi" Binding="{Binding Rekomendasi}" Width="1.5*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
     </Grid>
 </Page>
