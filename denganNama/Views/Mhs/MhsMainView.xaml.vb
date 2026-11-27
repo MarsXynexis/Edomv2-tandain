@@ -4,7 +4,7 @@ Public Class MhsMainView
     Public Property DaftarDosenMhs As ObservableCollection(Of DosenMhs)
     Public Property DaftarMatkulMhs As ObservableCollection(Of MatkulMhs)
 
-    Private Sub cmbPeriodeSemester_SelectionChaged(Sender As Object, e As SelectionChangedEventArgs)
+    Private Sub cmbPeriodeSemester_SelectionChanged(Sender As Object, e As SelectionChangedEventArgs)
 
     End Sub
 
