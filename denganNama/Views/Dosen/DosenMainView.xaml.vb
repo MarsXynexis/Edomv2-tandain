@@ -84,7 +84,7 @@ Public Class DosenMainView
             Try
                 Using conn As MySqlConnection = db.GetConnection()
                     If conn IsNot Nothing Then
-                        Dim query As String = "SELECT DISTINCT k.id, CONCAT(k.angkatan, ' · ', k.rombel) AS nama_kelas " &
+                        Dim query As String = "SELECT DISTINCT k.id, k.angkatan, k.rombel, CONCAT(k.angkatan, ' · ', k.rombel) AS nama_kelas " &
                                               "FROM pengampu p INNER JOIN kelas k ON p.id_kelas = k.id " &
                                               "WHERE p.id_dosen = @idDosen AND p.id_periode = @idPeriode AND p.aktif = TRUE " &
                                               "ORDER BY k.angkatan DESC, k.rombel ASC"
