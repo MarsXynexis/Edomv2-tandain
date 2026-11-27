@@ -1,3 +1,2 @@
 ﻿Class DosenDetailView
-
 End Class
