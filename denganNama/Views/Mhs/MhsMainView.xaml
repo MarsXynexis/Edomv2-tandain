@@ -39,7 +39,7 @@
                 <ComboBox
                     x:Name="cmbPeriodeSemester"
                     Grid.Column="1"
-                    Selected="cmbPeriodeSemester_Selected"
+                    SelectionChanged="cmbPeriodeSemester_SelectionChanged"
                     Style="{StaticResource CleanComboBoxStyle}" />
 
                 <Button

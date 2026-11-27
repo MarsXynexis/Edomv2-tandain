@@ -4,6 +4,14 @@ Public Class MhsMainView
     Public Property DaftarDosenMhs As ObservableCollection(Of DosenMhs)
     Public Property DaftarMatkulMhs As ObservableCollection(Of MatkulMhs)
 
+    Private Sub cmbPeriodeSemester_SelectionChaged(Sender As Object, e As SelectionChangedEventArgs)
+
+    End Sub
+
+    Private Sub btnTampilkan_Click(Sender As Object, e As RoutedEventArgs)
+
+    End Sub
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -18,6 +26,9 @@ Public Class MhsMainView
         DaftarDosenMhs = New ObservableCollection(Of DosenMhs) From {
             New DosenMhs With {.Nama = "Jacobi, S.Kom., M.Kom", .Kode = "TIK101", .Matkul = "Aljabar Linear"}
         }
+
+
+
 
         Me.DataContext = Me
     End Sub
