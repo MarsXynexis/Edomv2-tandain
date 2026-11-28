@@ -27,6 +27,7 @@
                     <ColumnDefinition Width="230" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="190" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -35,19 +36,27 @@
                     Margin="0,0,12,0"
                     VerticalAlignment="Center"
                     Foreground="{StaticResource InkPrimaryBrush}"
-                    Text="Data Periode Semester" />
+                    Text="Periode Semester" />
+
                 <ComboBox
                     x:Name="cmbPeriodeSemester"
                     Grid.Column="1"
                     SelectionChanged="cmbPeriodeSemester_SelectionChanged"
                     Style="{StaticResource CleanComboBoxStyle}" />
 
+                <TextBlock
+                    Grid.Column="2"
+                    Margin="22,0,12,0"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource InkPrimaryBrush}"
+                    Text="Kelas:" />
+
                 <Button
                     x:Name="btnTampilkan"
                     Grid.Column="4"
                     Margin="16,0,0,0"
                     Click="btnTampilkan_Click"
-                    Content="Tampilkan"
+                    Content="Isi Kuesioner"
                     Style="{StaticResource PrimaryButtonStyle}" />
             </Grid>
         </Border>
@@ -61,11 +70,161 @@
 
             <GroupBox
                 Grid.Column="0"
+                Padding="10,8,10,10"
                 BorderBrush="{StaticResource BorderDefaultBrush}"
                 BorderThickness="1"
                 FontWeight="SemiBold"
                 Foreground="{StaticResource InkPrimaryBrush}"
-                Header="Capaian 4 Pilar Kompetensi (Skala 0 - 100)" />
+                Header="Capaian 4 Pilar Kompetensi (Skala 0 - 100)">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border
+                        Grid.Column="0"
+                        Padding="8"
+                        Background="{StaticResource SubtleBgBrush}"
+                        BorderBrush="{StaticResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="6">
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource InkSecondaryBrush}"
+                                Text="Jumlah Matakuliah"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                x:Name="txtJmlMataKuliah"
+                                Margin="0,2,0,0"
+                                FontSize="23"
+                                Foreground="{StaticResource InkPrimaryBrush}"
+                                Text="0"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Padding="8"
+                        Background="{StaticResource SubtleBgBrush}"
+                        BorderBrush="{StaticResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="6">
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource InkSecondaryBrush}"
+                                Text="Jumlah Matakuliah"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                x:Name="txtEdomTerisi"
+                                Margin="0,2,0,0"
+                                FontSize="23"
+                                Foreground="{StaticResource InkPrimaryBrush}"
+                                Text="0"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Column="4"
+                        Padding="8"
+                        Background="{StaticResource SubtleBgBrush}"
+                        BorderBrush="{StaticResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource InkSecondaryBrush}"
+                                Text="Evaluasi Terisi"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                x:Name="txtEdomBelumTerisi"
+                                Margin="0,2,0,0"
+                                FontSize="23"
+                                Foreground="{StaticResource InkPrimaryBrush}"
+                                Text="0"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Column="6"
+                        Padding="8"
+                        Background="{StaticResource SubtleBgBrush}"
+                        BorderBrush="{StaticResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource InkSecondaryBrush}"
+                                Text="Evaluasi Belum Terisi"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                x:Name="txtEdomSudahTerisi"
+                                Margin="0,2,0,0"
+                                FontSize="23"
+                                Foreground="{StaticResource InkPrimaryBrush}"
+                                Text="0"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </GroupBox>
         </Grid>
+
+        <GroupBox
+            Grid.Row="2"
+            Padding="6,6,6,8"
+            BorderBrush="{StaticResource BorderDefaultBrush}"
+            BorderThickness="1"
+            FontWeight="SemiBold"
+            Foreground="{StaticResource InkPrimaryBrush}"
+            Header="Rincian Evaluasi per Dosen dan Mata Kuliah">
+            <DataGrid
+                x:Name="dgRincianEvaluasi"
+                MinColumnWidth="60"
+                RowHeight="36"
+                Style="{StaticResource CleanDataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="42"
+                        Binding="{Binding No}"
+                        Header="No" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding MataKuliah}"
+                        Header="Mata Kuliah" />
+                    <DataGridTextColumn
+                        Width="0.8*"
+                        Binding="{Binding Dosen}"
+                        Header="Dosen" />
+                    <DataGridTextColumn
+                        Width="55"
+                        Binding="{Binding SKS}"
+                        Header="SKS" />
+                    <DataGridTextColumn
+                        Width="55"
+                        Binding="{Binding SKS}"
+                        Header="Status Terisi" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
     </Grid>
 </Page>

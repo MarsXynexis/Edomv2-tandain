@@ -1,35 +1,76 @@
 ﻿Imports System.Collections.ObjectModel
+Imports MySql.Data.MySqlClient
 
 Public Class MhsMainView
-    Public Property DaftarDosenMhs As ObservableCollection(Of DosenMhs)
-    Public Property DaftarMatkulMhs As ObservableCollection(Of MatkulMhs)
+
+    Private cmdPeriodeSemester As Object
+
+    Private Class PilihanPeriode
+        Public Property Id As Integer
+        Public Property Teks As String
+
+        Public Sub New(idItem As Integer, teksItem As String)
+            Id = idItem
+            Teks = teksItem
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return Teks
+        End Function
+    End Class
+
+    Private sedangMuat As Boolean = False
+    Private Sub MuatDaftarPeriode()
+        sedangMuat = True
+        cmbPeriodeSemester.Items.Clear()
+
+        Try
+            Using conn As MySqlConnection = db.GetConnection()
+                If conn Is Nothing Then Exit Sub
+
+                Dim query As String = "SELECT id, nama_periode, status_aktif FROM periode_edom ORDER BY status_aktif DESC, tahun_ajaran DESC, semester DESC"
+                Using cmd As New MySqlCommand(query, conn)
+                    Using rd As MySqlDataReader = cmd.ExecuteReader()
+                        Dim idxAktif As Integer = -1
+                        Dim idx As Integer = 0
+
+                        While rd.Read()
+                            Dim Aktif As Boolean = Convert.ToBoolean(rd("status_aktif"))
+                            cmbPeriodeSemester.Items.Add(New PilihanPeriode(Convert.ToInt32(rd("id")), rd("nama_periode").ToString()))
+                            If Aktif AndAlso idxAktif = -1 Then idxAktif = idx
+                            idx += 1
+                        End While
+
+                        If cmbPeriodeSemester.Items.Count > 0 Then
+                            cmbPeriodeSemester.SelectedIndex = If(idxAktif >= 0, idxAktif, 0)
+                        End If
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal memuat daftar periode: " & ex.Message, "Kesalahan", MessageBoxButton.OK, MessageBoxImage.Error)
+        Finally
+            sedangMuat = False
+        End Try
+    End Sub
+
+    Private Sub MhsMainView_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        MuatDaftarPeriode()
+    End Sub
+
 
     Private Sub cmbPeriodeSemester_SelectionChanged(Sender As Object, e As SelectionChangedEventArgs)
+        If sedangMuat Then Exit Sub
 
+        Dim itemTerpilih As PilihanPeriode = TryCast(cmbPeriodeSemester.SelectedItem, PilihanPeriode)
+        If itemTerpilih IsNot Nothing Then
+            Dim idPeriode As Integer = itemTerpilih.Id
+        End If
     End Sub
 
     Private Sub btnTampilkan_Click(Sender As Object, e As RoutedEventArgs)
 
     End Sub
 
-    Public Sub New()
 
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        DaftarMatkulMhs = New ObservableCollection(Of MatkulMhs) From {
-            New MatkulMhs With {.Nim = "123456", .Nama = "Algoritma Pemrograman", .Jurusan = "Teknik Informatika dan Komputer", .Prodi = "Teknik Informatika, Teknik Multimedia Jaringan, Teknik Multimedia Digital"},
-            New MatkulMhs With {.Nim = "123457", .Nama = "Aljabar Linear", .Jurusan = "Teknik Informatika dan Komputer", .Prodi = "Teknik Informatika, Teknik Multimedia Jaringan, Teknik Multimedia Digital"}
-        }
-
-        DaftarDosenMhs = New ObservableCollection(Of DosenMhs) From {
-            New DosenMhs With {.Nama = "Jacobi, S.Kom., M.Kom", .Kode = "TIK101", .Matkul = "Aljabar Linear"}
-        }
-
-
-
-
-        Me.DataContext = Me
-    End Sub
 End Class
