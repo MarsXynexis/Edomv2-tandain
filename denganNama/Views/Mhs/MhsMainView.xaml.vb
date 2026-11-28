@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.Windows.Navigation
 Imports MySql.Data.MySqlClient
 
 Public Class MhsMainView
@@ -20,6 +21,8 @@ Public Class MhsMainView
     End Class
 
     Private sedangMuat As Boolean = False
+    Public Property MainFrame As Object
+
     Private Sub MuatDaftarPeriode()
         sedangMuat = True
         cmbPeriodeSemester.Items.Clear()
@@ -69,8 +72,17 @@ Public Class MhsMainView
     End Sub
 
     Private Sub btnTampilkan_Click(Sender As Object, e As RoutedEventArgs)
+        Dim navService As NavigationService = NavigationService.GetNavigationService(Me)
 
+        If navService IsNot Nothing Then
+            navService.Navigate(New MhsQuestionView())
+        Else
+            MessageBox.Show("Navigation service not available.", "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+            MainFrame.Navigate(New MhsQuestionView())
+        End If
     End Sub
+
+
 
 
 End Class

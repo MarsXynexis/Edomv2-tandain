@@ -52,7 +52,7 @@
                     Text="Kelas:" />
 
                 <Button
-                    x:Name="btnTampilkan"
+                    x:Name="btnKuesioner"
                     Grid.Column="4"
                     Margin="16,0,0,0"
                     Click="btnTampilkan_Click"
@@ -84,7 +84,6 @@
                         <ColumnDefinition Width="8" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="8" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Border
@@ -119,12 +118,11 @@
                         BorderBrush="{StaticResource BorderLightBrush}"
                         BorderThickness="1"
                         CornerRadius="6">
-
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock
                                 FontSize="12"
                                 Foreground="{StaticResource InkSecondaryBrush}"
-                                Text="Jumlah Matakuliah"
+                                Text="Evaluasi Terisi"
                                 TextAlignment="Center"
                                 TextWrapping="Wrap" />
                             <TextBlock
@@ -139,30 +137,6 @@
                     </Border>
                     <Border
                         Grid.Column="4"
-                        Padding="8"
-                        Background="{StaticResource SubtleBgBrush}"
-                        BorderBrush="{StaticResource BorderLightBrush}"
-                        BorderThickness="1"
-                        CornerRadius="6">
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock
-                                FontSize="12"
-                                Foreground="{StaticResource InkSecondaryBrush}"
-                                Text="Evaluasi Terisi"
-                                TextAlignment="Center"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                x:Name="txtEdomBelumTerisi"
-                                Margin="0,2,0,0"
-                                FontSize="23"
-                                Foreground="{StaticResource InkPrimaryBrush}"
-                                Text="0"
-                                TextAlignment="Center"
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Border>
-                    <Border
-                        Grid.Column="6"
                         Padding="8"
                         Background="{StaticResource SubtleBgBrush}"
                         BorderBrush="{StaticResource BorderLightBrush}"
@@ -208,21 +182,17 @@
                         Binding="{Binding No}"
                         Header="No" />
                     <DataGridTextColumn
+                        Width="0.8*"
+                        Binding="{Binding Dosen}"
+                        Header="Nama Dosen" />
+                    <DataGridTextColumn
                         Width="2*"
                         Binding="{Binding MataKuliah}"
                         Header="Mata Kuliah" />
                     <DataGridTextColumn
-                        Width="0.8*"
-                        Binding="{Binding Dosen}"
-                        Header="Dosen" />
-                    <DataGridTextColumn
                         Width="55"
-                        Binding="{Binding SKS}"
-                        Header="SKS" />
-                    <DataGridTextColumn
-                        Width="55"
-                        Binding="{Binding SKS}"
-                        Header="Status Terisi" />
+                        Binding="{Binding Status}"
+                        Header="Status" />
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
